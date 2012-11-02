@@ -1,7 +1,12 @@
 # encoding: utf-8
 
-require_relative 'partials'
-Podding.helpers PartialPartials
+Dir[File.dirname(__FILE__) + "/*.rb"].each do |helper|
+  if helper != __FILE__
+    require_relative helper
+  end
+end
 
-require_relative 'nicebytes'
-Podding.helpers NiceBytes
+Helper.defined_helpers.each do |helper|
+  puts "Loading helper #{helper}"
+  Podding.helpers helper
+end
