@@ -1,10 +1,10 @@
 # encoding: utf-8
 
-class Podding < Sinatra::Application
+class Podding < Sinatra::Base
 
-	get "/" do
-		@title = "Welcome to Podding"
-		slim :main
-	end
+  get "/" do
+    slim :index
+  end
 
 end
+
