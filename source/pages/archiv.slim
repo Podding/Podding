@@ -1,0 +1,31 @@
+doctype html
+html
+	== slim :"includes/_head"
+
+	body
+		#wrapper
+			
+			== slim :"includes/_header"
+
+			#content.episode-list.archive
+				h2.page-title: a.title-link.link-icon href=""
+					| <i class="icon-list"></i> <span class="title-label">Archiv</span>Retinacast
+				#published-episodes
+					== render_episode("rtc-s01e02")				
+					== render_episode("rtc-s01e01")
+
+				#paging-links
+					a.link-icon.link-older href="" 
+						|  <i class="icon-circle-arrow-left"></i> Ältere Folgen
+					
+
+				
+
+			== slim :"includes/_sidebar"
+
+						
+
+			
+				
+
+

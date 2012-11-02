@@ -1,0 +1,46 @@
+doctype html
+html
+	== slim :"includes/_head"
+
+	body
+		#wrapper
+			
+			== slim :"includes/_header"
+
+			div id="content" class=["page-single","page","single-episode"]
+				div class=["episode","rtn","episode-published"]
+					.header	
+						a.episode-icon.link-icon 
+							i.icon-play
+						h2.title: a.title-link href=""
+							| <span class="title-label">Retinauten</span> Synchronisierte Revolver-Dampfmaschine
+						.meta-info
+							a.id.link-icon href="" title="ID der Sendung Herp"
+								| <i class="icon-barcode"></i> rtn-008
+							a.date.link-icon href=""
+								| <i class="icon-time"></i> 3. Oktober 2012
+							a.comments href=""
+							 	| <i class="icon-comments"></i> 12
+							ul.crew
+								a.link-icon href="": i.icon-group
+								a.crew-member href="" Phil
+								a.crew-member href="" Marcel
+								a.crew-member href="" Pfleidi
+								a.crew-member href="" Lukas
+					.content
+						div.desciption.text-content
+							== render_markdown("episodes/shownotes")
+			
+			
+			
+
+			== slim :"includes/_sidebar"
+
+
+
+
+
+			
+				
+
+

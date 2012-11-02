@@ -1,0 +1,451 @@
+/* Basic Styles (Colour, Type, etc.) */
+
+	html {
+		font-style: "Helvetica Neue", Helvetica, serif;
+		font-size: @base-size;
+		line-height: @line;
+	}
+
+	body {
+		background-color: @bg;
+		// background-image: url('images/grid.png'); // OCD Mode
+		color: @text; 
+	}
+
+	a {
+		text-decoration: none;
+		color: @highlight;
+		border-bottom: 1px solid @sub;
+		.candy-trans;
+		&:hover {
+			color: @highlight2;
+			border-color: @highlight2;
+			cursor: pointer;
+			
+		}
+		&:active {
+			color: desaturate(@highlight2, 30%);
+		}
+
+		.text-content {
+			a:visited {
+				color: @highlight2;
+			}
+		}
+	}
+
+	h1 {
+		margin: 0;
+		font-size: 3rem;
+		line-height: 3*@line;
+	}
+
+	h2 {
+		margin: 0;
+		font-size: 1.5rem;
+		line-height: 1.5*@line;
+	}
+
+	h3 {
+		margin: 0;
+		font-size: 1.2rem;
+		line-height: @line;
+	}
+
+	.text-content h3, .text-content-long h3 {
+		margin: @line auto @line 20px;
+	}
+
+	p {
+		margin: 0;
+	}
+
+	.text-content {
+		p {
+			text-indent: 1em;
+			margin-bottom: @line;
+			&:first-child {
+				text-indent: 0;
+			}
+		}
+
+		h3 + p {
+			text-indent: 0;
+		}
+	}
+
+	.text-content-long { // longer text wider than about 40 chars per line becomes uncomfortable to read
+		.text-content;
+		max-width: 600px;	
+	}
+
+/* Generic Styles (stuff that reappears again and again) */
+
+	.title {
+		a {
+			.hide-link;
+			color: @highlight;
+		}
+	}
+
+	/* Sidebar (which is the header and the actual sidebar) */
+		/* Site Header */
+
+		#site-title {
+
+			a {
+				color: @text;
+				.hide-link;
+			}	
+		}
+
+		#tagline {
+			font-size: 1.3rem;
+			line-height: 2*@line;
+			font-style: italic;
+			@media all and (min-width: @break1) 	{
+				
+			}
+		}
+
+		/* Navigation */
+
+		nav {
+			height: 2*@line;
+			background-color: @highlight;
+			.bordered;
+			ul {
+				.inline-list;
+				margin: 0;
+				padding: 0.5*@line 0;
+				text-align: center;
+				li {
+					display: inline;
+					font-size: 1.2rem;
+					font-weight: 300;
+					line-height: @line;
+					i {
+						font-size: 18px;
+						
+						font-weight: 700;
+					}
+					a {
+						.link-icon-alt;
+						color: @bg;
+						border: none;
+						:hover {
+							color: @text;
+						}
+					}
+				}
+				@media all and (max-width: @break1) 	{
+					span > span {
+						display: none;
+					}
+				}
+				@media all and (max-width: @break2) 	{
+					span {
+						display: none;
+					}
+				}
+			}
+		}
+
+		#sidebar {
+			border-top: 1px solid @sub;
+			padding-top: @line;
+			@media all and (min-width: @break1) 	{
+				border: none;
+				padding-top: 0;
+			}
+		}
+
+		
+
+		/* Footer */
+
+		#footer {
+			margin-top: @line;
+			border-top: 1px solid @sub;
+			padding-bottom: @line;
+			font-size: 0.8rem;
+			color: @text-less;
+			a { .hide-link; border-bottom: 1px solid; }
+		}
+
+
+	/* Content */
+
+	#content {
+		
+	}
+
+	#paging-links {
+		color: @text-less;
+		margin-bottom: 2*@line;
+		.link-older {
+			.inline-icon;
+			float: left;
+		}
+		.link-newer {
+			.inline-icon;
+			float: right;
+		}
+	}
+
+	/* Podcast Episodes */
+	.episode-list {
+		.more-link {			
+			color: @text-less;
+			.hide-link-hardcore;
+			img {
+				float: left;
+			}
+			span {
+				margin-left: 24px;
+				color: @text-less;
+				&:hover {
+							color: @highlight2;
+						}
+			}
+		}
+	}
+
+	.episode {
+		padding-bottom: @line;
+		margin-bottom: @line;
+		overflow: hidden;
+		.header {
+			margin-bottom: @line;
+			.episode-icon, .icon {
+				float: left;
+				width: 40px;
+				height: @line;
+				font-size: 24px;
+				vertical-align: middle;
+				.link-icon;
+			}
+
+			.title-label {
+				color: @text;
+			}
+
+			.meta-info {
+				margin-left: 40px;
+				color: @text-even-less;
+				a {
+					.hide-link;
+					margin-right: 0.5em;
+					}
+				.id { 
+					text-transform: uppercase; // CHOCKLOCK
+				}
+				.date {
+					
+				}
+				.crew {
+					margin: 0;
+					padding: 0;
+					display: inline;
+					.inline-list;
+					a {
+						text-decoration: none;
+						color: @sub;
+						.itemized;
+						.hide-link;
+						&:first-child:after {
+							content: " ";
+						}
+					}
+
+				}
+				.live-info {
+					
+				}
+			}
+		}
+		.content {
+				margin-left: 40px;
+			}
+			.more-link-text {
+				.inline-icon;
+				.link-icon;
+				float: right;
+				color: @text-less;
+				border: none;
+			}
+	}
+		/* Live Episodes */
+
+		#live-episodes {
+			margin-top: 2*@line;
+		}
+
+		/* Planned Episodes from the future! */
+		
+		#planned-episodes {
+			clear: both;
+			margin-bottom: @line;
+			overflow: hidden;
+			#planned-label {
+				width: 40px;
+				float: left;
+				color: @text;
+				i {font-size: 24px;vertical-align: middle;}
+			}
+		}
+
+		#planned-episodes-list {
+			float: left;
+			width: 90%;
+			@media all and (max-width: @break2) 	{ // prevent list from weird formatting on small screens
+				width: 85%;
+			}
+			margin: 0;
+			padding: 0;
+			.inline-list;
+			li {
+				float: left;
+				margin-right: 0.1em;
+				font-size: 1.2rem;
+				font-weight: 500;
+
+			}
+			
+			.episode-planned {
+				&:after {
+					content: " / ";
+					color: @text-less;
+					font-weight: 800;
+				}
+				a { 
+					color: @highlight-less;
+					span { color: @text-less;}
+					&:hover {
+						color: @highlight2;
+					}
+				}
+			}
+
+		.more-link {
+			.inline-icon;
+			color: @text-even-less;
+			padding-left: 0.2rem;
+			}
+		}
+
+		/* Published episodes */
+
+		.episode-published {
+			border-bottom: 1px solid @highlight;
+			&:last-child {
+
+			}
+		}
+
+
+		
+
+/* Styles for specific pages / types of pages */
+
+	.page-title {
+		width: 100%;
+		text-align: center;
+		margin-bottom: 1.5*@line;
+		a {
+			.hide-link;
+			
+		}
+		span.quip {
+			font-size: 1.2rem;
+		}
+
+		span.title-label {
+			
+		}
+		
+	}
+
+
+	/* Single Episode */
+
+	.single-episode {
+		
+		.episode {
+			border-bottom: none;
+		}
+	}
+
+	/* Crew Page */
+
+	.crew-member {
+		margin-bottom: 2*@line;
+		h4 {
+			margin: 0;
+			span {
+				.em-dashed;
+				font-style: italic;
+				color: @text-less;
+			}
+		}
+		img {
+			float: left;
+			width: 6*@line;
+			height: 6*@line;
+			margin: 0 @line @line 0;
+		}
+		.social-links {
+			margin: 0 0 @line 0;
+			.inline-list;
+			li {
+				.itemized;
+				a {
+					.hide-link;
+				}
+			}
+		}
+
+		.episode-links {
+			span {
+				float: left;
+			}
+			.episode-links-list {
+				display: inline;
+				.inline-list;
+				margin: 0;
+				padding-left: 10px;
+				li {
+					.itemized;
+					a {
+						color: @text;
+					}
+				}
+			}
+		}
+	}
+
+	/* Abo page */
+
+	.page-abo {
+		.button {
+			margin-bottom: 0.5*@line;
+		}
+	}
+
+
+	.feedtable {
+		width: 100%;
+		td {
+			padding: 3px 1rem;
+			a {
+				.hide-link;
+			}
+		}
+		tr {
+			&:nth-child(2n) {
+				background-color: @bg-less;
+			}
+		}
+
+	}
+	
