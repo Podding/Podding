@@ -1,5 +1,7 @@
 # encoding: utf-8
+
 module NiceBytes
+  include Helper
 
   K = 2.0**10
   M = 2.0**20
