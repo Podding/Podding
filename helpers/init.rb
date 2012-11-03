@@ -7,6 +7,5 @@ Dir[File.dirname(__FILE__) + "/*.rb"].each do |helper|
 end
 
 Helper.defined_helpers.each do |helper|
-  puts "Loading helper #{helper}"
   Podding.helpers helper
 end

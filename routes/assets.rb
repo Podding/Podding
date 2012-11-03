@@ -6,7 +6,6 @@ class Podding < Sinatra::Base
 
   get "/css/:file.css" do |file|
     path = "css/#{file}".to_sym
-    logger.info "Loading #{path}"
     less path
   end
 
