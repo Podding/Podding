@@ -6,5 +6,9 @@ class Podding < Sinatra::Base
     slim :index
   end
 
+  get "/pages/:name" do |name|
+    slim "pages/#{name}".to_sym
+  end
+
 end
 
