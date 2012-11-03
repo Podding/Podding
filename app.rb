@@ -4,7 +4,7 @@ require 'bundler/setup'
 require 'sinatra/base'
 require 'slim'
 require 'less'
-require 'logger'
+require 'redcarpet'
 
 require_relative 'lib/helper'
 
@@ -31,9 +31,10 @@ class Podding < Sinatra::Base
     alias_method :h, :escape_html
   end
 
+  require_relative 'routes/init'
+  require_relative 'models/init'
+  require_relative 'helpers/init'
+
   run! if app_file == $0
 end
 
-require_relative 'routes/init'
-require_relative 'models/init'
-require_relative 'helpers/init'
