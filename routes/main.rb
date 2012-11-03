@@ -6,6 +6,10 @@ class Podding < Sinatra::Base
     slim :index
   end
 
+  not_found do
+    slim :"404"
+  end
+
   get "/pages/:name" do |name|
     slim "pages/#{name}".to_sym
   end
