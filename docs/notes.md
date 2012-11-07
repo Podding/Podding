@@ -7,7 +7,7 @@ braucht: arrays mit ids für geplante, live und gesendete episoden (index.slim)
 -> redirect zu /shows/:show/:number wenn es geht
 
 /shows/:show/:number - Eine Folge anzeigen
--> braucht: id der folge, titel der folge (für den header)
+-> braucht: id der folge, titel der folge (für den header) (episode.slim)
 
 /shows/:show - Archiv einer Show
 braucht: show, show-title, arrays mit ids (geplant, live, published), meta-kram über die show (beschreibungstext z.b.) (show.slim)
@@ -41,7 +41,10 @@ teaser: header + teaser und link zu den shownotes (wie auf dem index)
 header: nur den header (für übersichtlichere Listen)
 mini: Nur den Namen als Link zur Folge (für sehr basic listen, die geplanten folgen etc.)
 
+full und teaser kann man im template super unterscheiden, die anderen beiden sollten direkt in code als templates aufgerufen werden
+
 außerdem noch als local übergeben:
+- mode auf jeden fall
 - icon (aus dem status ablesen)
 - status (damit ich so sachen machen kann wie den live link rausgeben etc.)
 - title, tags, crew (array mit ids?), datum, id, number, show, show_title, etc. pp.
@@ -51,6 +54,10 @@ außerdem noch als local übergeben:
 ## render_shownotes(id)
 
 gibt mit shownotes aus, schon durch markdown geparsed und durch alle amazon-sonstwas-filter geworfen
+
+## render_description(id)
+
+render description of episode (pass through markdown etc.pp.)
 
 ## render_host(handle, mode)
 
