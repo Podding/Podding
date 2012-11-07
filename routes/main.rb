@@ -14,5 +14,13 @@ class Podding < Sinatra::Base
     slim "pages/#{name}".to_sym
   end
 
+  get "/shows/:show" do |show|
+    ShowController.new(show).render
+  end
+
+  get "/shows/:show/:name" do |show, name|
+    ShowController.new(show).render(name)
+  end
+
 end
 
