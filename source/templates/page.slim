@@ -1,0 +1,27 @@
+doctype html
+html
+	== slim :"includes/_head", :locals => {:title => "title"}
+
+	body
+		#wrapper
+			
+			== slim :"includes/_header"
+
+			#content.page-single.page
+				h2.page-title: a.title-link.link-icon href=""
+					| <i class="icon-book"></i> Title
+				
+				#page-content.text-content-long
+
+					p content here (pass it through markdown, we're golden.)
+
+			== slim :"includes/_sidebar"
+
+
+
+
+
+			
+				
+
+
