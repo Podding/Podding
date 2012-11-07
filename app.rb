@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby -w
+#!/usr/bin/env ruby
 # encoding: utf-8
 
 require 'bundler/setup'
@@ -6,7 +6,10 @@ require 'sinatra/base'
 require 'slim'
 require 'less'
 require 'redcarpet'
+require 'ohm'
 
+require_relative 'lib/model'
+require_relative 'lib/controller'
 require_relative 'lib/helper'
 
 class Podding < Sinatra::Base
@@ -32,6 +35,7 @@ class Podding < Sinatra::Base
     alias_method :h, :escape_html
   end
 
+  require_relative 'controllers/init'
   require_relative 'routes/init'
   require_relative 'models/init'
   require_relative 'helpers/init'
