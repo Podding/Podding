@@ -22,5 +22,11 @@ class Podding < Sinatra::Base
     ShowController.new(show).render(name)
   end
 
+  # Debug route so we can test-render templates
+
+  get "/debug/*" do |template|
+    slim template.to_sym
+  end
+
 end
 
