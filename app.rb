@@ -8,6 +8,7 @@ end
 
 require 'bundler/setup'
 require 'sinatra/base'
+require 'sinatra/assetpack'
 require 'slim'
 require 'less'
 require 'redcarpet'
@@ -20,15 +21,18 @@ require_relative 'lib/mixins/read_content'
 class Podding < Sinatra::Base
   enable :sessions, :static, :logging
 
-  base_dir = File.dirname(__FILE__)
+  source_dir = File.dirname(__FILE__) + '/source'
 
-  set :public_folder, base_dir + '/source/assets'
-  set :views, base_dir + '/source'
+  set :root, File.dirname(__FILE__)
+  register Sinatra::AssetPack
+
+  set :public_folder, source_dir + '/assets'
+  set :views, source_dir + '/templates'
+  set :pages, source_dir + '/pages'
+  set :episodes, source_dir + '/episodes'
 
   configure :production do
-    set :clean_trace, true
-    set :css_files, :blob
-    set :js_files,  :blob
+    # ...
   end
 
   configure :development do
@@ -43,6 +47,14 @@ class Podding < Sinatra::Base
   require_relative 'controllers/init'
   require_relative 'models/init'
   require_relative 'helpers/init'
+
+  Less.paths << source_dir + "/css"
+
+  assets do
+    serve '/js',     from: 'source/js'
+    serve '/css',    from: 'source/css'
+    serve '/images', from: 'source/images'
+  end
 
   run! if app_file == $0
 end
