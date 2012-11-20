@@ -1,6 +1,11 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 
+if "1.9".respond_to?(:encoding)
+  Encoding.default_external = 'UTF-8'
+  Encoding.default_internal = 'UTF-8'
+end
+
 require 'bundler/setup'
 require 'sinatra/base'
 require 'slim'
