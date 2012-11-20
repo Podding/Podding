@@ -14,9 +14,7 @@ require 'less'
 require 'redcarpet'
 require 'ohm'
 
-require_relative 'lib/model'
-require_relative 'lib/helper'
-require_relative 'lib/mixins/read_content'
+require_relative 'lib/podding'
 
 class Podding < Sinatra::Base
   enable :sessions, :static, :logging
