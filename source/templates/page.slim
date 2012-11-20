@@ -1,18 +1,3 @@
-doctype html
-html
-  == slim :"templates/includes/_head", :locals => { :title => "title" }
-
-  body
-    #wrapper
-
-      == slim :"templates/includes/_header"
-
-      #content.page-single.page
-        h2.page-title: a.title-link.link-icon href=""
-          | <i class="icon-book"></i> Title
-
-        #page-content.text-content-long
-          == markdown @model.content
-
-      == slim :"templates/includes/_sidebar"
+#page-content.text-content-long
+  == markdown @model.content
 
