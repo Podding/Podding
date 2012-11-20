@@ -1,0 +1,12 @@
+== slim :"templates/includes/_episode-header"
+
+.content
+  / if mode full or teaser
+  div.desciption.text-content
+    / == render_description(id)
+    /if mode teaser
+    a.more-link-text title="Link zu den Shownotes zu #{show_title}-#{title}" href=""
+      | <i class="icon-book"></i> Shownotes
+    /else if mode full
+    / == render_shownotes(id)
+
