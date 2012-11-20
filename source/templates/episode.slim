@@ -1,20 +1,11 @@
 doctype html
 html
-	== slim :"includes/_head", :locals => {:title => "#{@show-name}: #{@title}"}
+  == slim :"includes/_head", :locals => { :title => "#{@show-name}: #{@title}" }
 
-	body
-		#wrapper
-			
-			== render_episode(id,full)
-			
+  body
+    #wrapper
 
-			== slim :"includes/_sidebar"
+      == render_episode(id,full)
 
-
-
-
-
-			
-				
-
+      == slim :"includes/_sidebar"
 
