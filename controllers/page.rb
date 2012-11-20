@@ -11,14 +11,7 @@ class Podding < Sinatra::Base
 
   def render_page
     meta_data = @model.meta_data
-
-    template = if meta_data[:template]
-                 "_templates/#{meta_data[:template]}".to_sym
-               else
-                 "_templates/page".to_sym
-               end
-
-    slim template
+    slim @model.template
   end
 
 end
