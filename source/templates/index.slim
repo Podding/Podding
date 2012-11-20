@@ -34,8 +34,9 @@
 
   #published-episodes
 
-    == render_episode("rtc/rtc-s01e01.md")
-    == render_episode("rtc/rtc-s01e01.md")
+    - for episode in @episodes do
+      == slim :episode, :locals => { :episode => episode }
+
 
   #paging-links
     a.link-icon.link-older href=""
