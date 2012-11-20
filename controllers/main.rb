@@ -10,14 +10,6 @@ class Podding < Sinatra::Base
     slim :"404"
   end
 
-  get "/shows/:show" do |show|
-    "show"
-  end
-
-  get "/shows/:show/:name" do |show, name|
-    "show"
-  end
-
   # Debug route so we can test-render templates
 
   get "/debug/*" do |template|
