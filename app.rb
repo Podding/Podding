@@ -14,8 +14,8 @@ require 'redcarpet'
 require 'ohm'
 
 require_relative 'lib/model'
-require_relative 'lib/controller'
 require_relative 'lib/helper'
+require_relative 'lib/mixins/read_content'
 
 class Podding < Sinatra::Base
   enable :sessions, :static, :logging
@@ -41,7 +41,6 @@ class Podding < Sinatra::Base
   end
 
   require_relative 'controllers/init'
-  require_relative 'routes/init'
   require_relative 'models/init'
   require_relative 'helpers/init'
 
