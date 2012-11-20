@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 class PageModel < Model
-  include ReadContent
 
   class << self
 
