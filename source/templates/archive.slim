@@ -1,0 +1,13 @@
+#content.episode-list.archive
+  h2.page-title: a.title-link.link-icon href=""
+    | <i class="icon-list"></i> <span class="title-label">Archiv</span>Retinacast
+
+  #published-episodes
+
+    - for episode in @episodes do
+      == slim :episode, :locals => { :episode => episode }
+
+  #paging-links
+    a.link-icon.link-older href=""
+      |  <i class="icon-circle-arrow-left"></i> Ältere Folgen
+
