@@ -26,8 +26,8 @@ class Model
   end
 
   def template
-    if @meta_data[:template]
-      @meta_data[:template].to_sym
+    if @meta_data["template"]
+      @meta_data["template"].to_sym
     else
       default_template
     end
