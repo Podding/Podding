@@ -2,10 +2,6 @@
 
 class Podding < Sinatra::Base
 
-  get "/" do
-    slim :index
-  end
-
   not_found do
     slim :"404"
   end
