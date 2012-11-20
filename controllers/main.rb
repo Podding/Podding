@@ -10,16 +10,12 @@ class Podding < Sinatra::Base
     slim :"404"
   end
 
-  get "/pages/:name" do |name|
-    slim "pages/#{name}".to_sym
-  end
-
   get "/shows/:show" do |show|
-    ShowController.new(show).render
+    "show"
   end
 
   get "/shows/:show/:name" do |show, name|
-    ShowController.new(show).render(name)
+    "show"
   end
 
   # Debug route so we can test-render templates
