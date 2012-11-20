@@ -34,4 +34,12 @@ class Model
     end
   end
 
+  def default_template
+    raise NotImplementedError
+  end
+
+  def content_path
+    raise NotImplementedError
+  end
+
 end
