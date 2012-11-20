@@ -19,7 +19,6 @@ class Model
 
   def initialize(options = {})
     @path = options[:path]
-    @name = options[:name]
 
     split_content = split_content_and_meta(content_path)
     @content = split_content[:content]

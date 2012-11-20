@@ -13,6 +13,8 @@ class PageModel < Model
   end
 
   def initialize(options = {})
+    @name = options[:name]
+
     super(options)
   end
 
