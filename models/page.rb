@@ -30,9 +30,9 @@ class PageModel < Model
 
   def template
     if @meta_data[:template]
-      "templates/#{@meta_data[:template]}".to_sym
+      @meta_data[:template].to_sym
     else
-      "templates/page".to_sym
+      :page
     end
   end
 
