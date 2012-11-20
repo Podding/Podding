@@ -1,10 +1,11 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    backports (2.6.4)
+    backports (2.6.5)
     commonjs (0.2.6)
     daemons (1.1.9)
     eventmachine (1.0.0)
+    jsmin (1.0.1)
     less (2.2.2)
       commonjs (~> 0.2.6)
     libv8 (3.3.10.4)
@@ -26,6 +27,11 @@ GEM
       rack (~> 1.3, >= 1.3.6)
       rack-protection (~> 1.2)
       tilt (~> 1.3, >= 1.3.3)
+    sinatra-assetpack (0.0.11)
+      jsmin
+      rack-test
+      sinatra
+      tilt (>= 1.3.0)
     sinatra-contrib (1.3.2)
       backports (>= 2.0)
       eventmachine
@@ -33,7 +39,7 @@ GEM
       rack-test
       sinatra (~> 1.3.0)
       tilt (~> 1.3)
-    slim (1.3.3)
+    slim (1.3.4)
       temple (~> 0.5.5)
       tilt (~> 1.3.3)
     temple (0.5.5)
@@ -54,6 +60,7 @@ DEPENDENCIES
   rack
   redcarpet
   sinatra
+  sinatra-assetpack
   sinatra-contrib
   slim
   therubyracer

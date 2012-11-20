@@ -3,6 +3,7 @@ source :rubygems
 # Base app
 gem 'rack'
 gem 'sinatra', :require => 'sinatra/base'
+gem 'sinatra-assetpack', :require => 'sinatra/assetpack'
 gem 'sinatra-contrib'
 gem 'thin'
 
