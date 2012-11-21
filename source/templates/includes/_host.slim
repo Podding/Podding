@@ -1,17 +1,17 @@
 .host
-    - if #{host.image_url}
+    - if #{host.image_url} != ""
       img src="#{host.image_url}"
     h4 #{host.name}
-    - if #{host.quip}
+    - if #{host.quip} != ""
       <span class="quip">one bad motherfucker</span>
     ul.social-links
-    - if #{host.twitter_name}
+    - if #{host.twitter_name} != ""
       li: a href="https://twitter.com/#{host.twitter_url}"
         | <i class="icon-twitter"></i> Twitter
-    - if #{host.flattr}
+    - if #{host.flattr} != ""
       li: a href=""
         | <i class="icon-money"></i> Flattr
-    - if #{host.blog_url}
+    - if #{host.blog_url} != ""
       li: a href="#{host.blog_url}"
         | <i class="icon-link"></i> Blog
 
