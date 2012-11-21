@@ -1,0 +1,29 @@
+.crew-member
+    - if #{member.image_url}
+      img src="#{member.image_url}"
+    h4 #{member.name}
+    - if #{member.quip}
+      <span class="quip">one bad motherfucker</span>
+    ul.social-links
+    - if #{member.twitter_name}
+      li: a href="https://twitter.com/#{member.twitter_url}"
+        | <i class="icon-twitter"></i> Twitter
+    - if #{member.flattr}
+      li: a href=""
+        | <i class="icon-money"></i> Flattr
+    - if #{member.blog_url}
+      li: a href="#{member.blog_url}"
+        | <i class="icon-link"></i> Blog
+
+    .description.text-content
+      == markdown member.bio
+
+
+    .episode-links
+      | <span>Folgen: </span>
+      ul.episode-links-list
+        li: a href="" RTN002
+        li: a href="" RTN005
+        li: a href="" RTC S01E05: House
+        li: a href="" RTC S02E03: Inspector Spacetime
+        li.more-link.tooltip.tooltip-bottom: a href="" title="Archiv: Sendungen mit Marcel" data-tooltip="Archiv: Sendungen mit Marcel" noch viele weitere
