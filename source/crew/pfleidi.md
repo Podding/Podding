@@ -7,4 +7,4 @@ image_url: "http://placekitten.com/800/800"
 quip: "likes kittens!"
 ---
 
-This is a crew member.
+This is a host.

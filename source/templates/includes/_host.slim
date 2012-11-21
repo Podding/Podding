@@ -1,22 +1,22 @@
-.crew-member
-    - if #{member.image_url}
-      img src="#{member.image_url}"
-    h4 #{member.name}
-    - if #{member.quip}
+.host
+    - if #{host.image_url}
+      img src="#{host.image_url}"
+    h4 #{host.name}
+    - if #{host.quip}
       <span class="quip">one bad motherfucker</span>
     ul.social-links
-    - if #{member.twitter_name}
-      li: a href="https://twitter.com/#{member.twitter_url}"
+    - if #{host.twitter_name}
+      li: a href="https://twitter.com/#{host.twitter_url}"
         | <i class="icon-twitter"></i> Twitter
-    - if #{member.flattr}
+    - if #{host.flattr}
       li: a href=""
         | <i class="icon-money"></i> Flattr
-    - if #{member.blog_url}
-      li: a href="#{member.blog_url}"
+    - if #{host.blog_url}
+      li: a href="#{host.blog_url}"
         | <i class="icon-link"></i> Blog
 
     .description.text-content
-      == markdown member.bio
+      == markdown host.bio
 
 
     .episode-links

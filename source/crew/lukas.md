@@ -7,4 +7,4 @@ image_url: "http://placekitten.com/500/500"
 quip: "one bad mofo"
 ---
 
-This is a another (!) crew member.
+This is a another (!) host.
