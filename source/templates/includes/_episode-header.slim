@@ -1,16 +1,16 @@
-div class=["episode","#{episode.meta_data["show"]}","episode-#{episode.meta_data["status"]}"]
+div class=["episode", "#{ episode.show }", "episode-#{ episode.status }"]
   .header
     a.episode-icon.link-icon
       i.icon-play
     h2.title: a.title-link href="/episode"
-      | <span class="title-label">#{episode.meta_data["show_title"]}</span> #{episode.meta_data["title"]}
+      | <span class="title-label">#{ episode.show_title }</span> #{ episode.title }
     .meta-info
-      a.id.link-icon.tooltip.tooltip-bottom href="" title="ID der Sendung #{episode.meta_data["show_title"]}: #{episode.meta_data["title"]}" data-tooltip="ID der Sendung #{episode.meta_data["show-title"]}: #{episode.meta_data["title"]}"
-        | <i class="icon-barcode"></i> #{episode.meta_data["show"]} #{episode.meta_data["id"]}
+      a.id.link-icon.tooltip.tooltip-bottom href="" title="ID der Sendung #{ episode.show_title }: #{ episode.title }" data-tooltip="ID der Sendung #{ episode.show_title }: #{ episode.title }"
+        | <i class="icon-barcode"></i> #{ episode.show } #{ episode.id }
       a.date.link-icon href=""
-       | <i class="icon-time"></i> #{episode.meta_data["date"]}
-      a.comments href="" title="Kommentare zu #{episode.meta_data["title"]}"
-       | <i class="icon-comments"></i> #{episode.meta_data["comments"]}
+       | <i class="icon-time"></i> #{ episode.date }
+      a.comments href="" title="Kommentare zu #{ episode.title }"
+       | <i class="icon-comments"></i> #{ episode.comments }
       ul.crew
         a.link-icon href="": i.icon-group
         a.host href="" Phil
@@ -21,5 +21,5 @@ div class=["episode","#{episode.meta_data["show"]}","episode-#{episode.meta_data
     div.desciption.text-content
       == markdown episode.content
 
-      a.more-link-text title="Link zu den Shownotes zu #{episode.meta_data["show-title"]}-#{episode.meta_data["title"]}" href=""
+      a.more-link-text title="Link zu den Shownotes zu #{ episode.show_title } - #{ episode.title }" href=""
         | <i class="icon-book"></i> Shownotes
