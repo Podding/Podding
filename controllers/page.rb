@@ -5,7 +5,7 @@ class Podding < Sinatra::Base
   # Special pages
 
   get "/pages/archive" do
-    @episodes = EpisodeModel.all(path: settings.episodes)
+    @episodes = Episode.all(path: settings.episodes)
     slim :archive
   end
 
@@ -15,7 +15,7 @@ class Podding < Sinatra::Base
   end
 
   get "/pages/:name" do |name|
-    @page = PageModel.new(name: name, path: settings.pages)
+    @page = Page.new(name: name, path: settings.pages)
     slim @page.template
   end
 

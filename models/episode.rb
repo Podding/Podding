@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class EpisodeModel < Model
+class Episode < Model
 
   class << self
 
@@ -9,7 +9,7 @@ class EpisodeModel < Model
       episode_paths = episode_paths.last(options[:limit]) if options[:limit]
 
       episode_paths.map do |path|
-        EpisodeModel.new(path: path)
+        Episode.new(path: path)
       end
     end
 

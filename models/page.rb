@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class PageModel < Model
+class Page < Model
 
   class << self
 
