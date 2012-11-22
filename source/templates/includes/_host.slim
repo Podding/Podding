@@ -1,8 +1,9 @@
 .host
-  h4 #{ host.name }
 
   - if host.image_url
     img src="#{ host.image_url }"
+
+  h4 #{ host.name }
 
   - if host.quip
     <span class="quip">#{ host.quip }</span>
@@ -12,11 +13,13 @@
   - if host.twitter_name
     li: a href="https://twitter.com/#{ host.twitter_name }"
       | <i class="icon-twitter"></i> Twitter
+
   - if host.flattr
     li: a href=""
       | <i class="icon-money"></i> Flattr
+
   - if host.blog_url
-    li: a href="#{host.blog_url}"
+    li: a href="#{ host.blog_url }"
      | <i class="icon-link"></i> Blog
 
   .description.text-content
