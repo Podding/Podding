@@ -23,7 +23,6 @@ class Model
     split_content = split_content_and_meta(content_path)
     @content = split_content[:content]
     @meta_data = split_content[:meta_data]
-    add_methods
   end
 
   def template
@@ -42,12 +41,18 @@ class Model
     raise NotImplementedError
   end
 
-  private
-
-  def add_methods
-    @meta_data.keys.each do |key|
-      self.class.send(:define_method, key, Proc.new { @meta_data[key] })
+  # Dynamic meta data lookup
+  def method_missing(meth, *args, &block)
+    key = meth.to_s
+    if @meta_data.has_key?(key)
+      @meta_data[key]
+    else
+      nil
     end
+  end
+
+  def respond_to?(meth)
+    @meta_data.has_key?(meth)
   end
 
 end
