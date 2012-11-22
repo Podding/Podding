@@ -10,7 +10,7 @@ class Podding < Sinatra::Base
   end
 
   get "/pages/hosts" do
-    @hosts = Hosts.all(path: settings.hosts)
+    @hosts = Host.all(path: settings.hosts)
     slim :hosts
   end
 
