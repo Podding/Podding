@@ -3,7 +3,7 @@
 class Podding < Sinatra::Base
 
   get "/shows/:name" do |name|
-    @show = Show.new(name: name, path: settings.episodes)
+    @show = Show.new(name: name)
     slim @show.template
   end
 

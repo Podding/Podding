@@ -5,7 +5,7 @@ class Host < Model
   class << self
 
     def all(options = {})
-      host_paths = scan_hosts(options[:path])
+      host_paths = scan_files
 
       host_paths.map do |path|
         Host.new(path: path)
@@ -17,11 +17,6 @@ class Host < Model
       hosts.select do |host|
         host.meta_data[options[:by]] == options[:value]
       end
-    end
-
-    def scan_hosts(base_path)
-      path = "#{base_path}/*.md"
-      Dir[path]
     end
 
   end
