@@ -3,7 +3,7 @@
 class Podding < Sinatra::Base
 
   get "/" do
-    @episodes = Episode.all(path: settings.episodes)
+    @episodes = Episode.all
     slim :index
   end
 

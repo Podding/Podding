@@ -7,6 +7,8 @@ class Model
 
   class << self
 
+    attr_accessor :base_path
+
     def all(options = {})
       raise NotImplementedError
     end
@@ -15,11 +17,20 @@ class Model
       raise NotImplementedError
     end
 
+    def path
+      name = self.name.downcase + "s"
+      "#{ Model.base_path }/#{ name }"
+    end
+
+    def scan_files
+      files = "#{ path }/**/*.md"
+      Dir[files]
+    end
+
   end
 
   def initialize(options = {})
     @path = options[:path]
-
     split_content = split_content_and_meta(content_path)
     @content = split_content[:content]
     @meta_data = split_content[:meta_data]
@@ -44,6 +55,9 @@ class Model
   # Dynamic meta data lookup
   def method_missing(meth, *args, &block)
     key = meth.to_s
+
+    return super if @meta_data.nil?
+
     if @meta_data.has_key?(key)
       @meta_data[key]
     else
@@ -52,7 +66,11 @@ class Model
   end
 
   def respond_to?(meth)
-    @meta_data.has_key?(meth)
+    if @meta_data.has_key?(meth)
+      true
+    else
+      super
+    end
   end
 
 end
