@@ -13,23 +13,6 @@ class Episode < Model
       end
     end
 
-    def find(options = {})
-      episodes = all(path: options[:path])
-
-      episodes.select! do |episode|
-        match = true
-
-        options[:parameters].each do |parameter, value|
-          if episode.meta_data[parameter.to_s] != value
-            match = false
-            break    
-          end
-        end
-        
-        match
-      end
-    end
-
     def scan_episodes(base_path)
       path = "#{base_path}/**/*.md"
       Dir[path]

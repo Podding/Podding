@@ -14,7 +14,10 @@ class Model
     end
 
     def find(options = {})
-      raise NotImplementedError
+      models = all(options)
+      models.select do |model|
+        model.meta_data[options[:by]] == options[:value]
+      end
     end
 
     def path

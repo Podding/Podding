@@ -6,10 +6,6 @@ class Page < Model
 
     def all(options = {})
     end
-
-    def find(options = {})
-    end
-
   end
 
   def initialize(options = {})

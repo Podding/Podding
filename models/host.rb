@@ -11,14 +11,6 @@ class Host < Model
         Host.new(path: path)
       end
     end
-
-    def find(options = {})
-      hosts = all(options)
-      hosts.select do |host|
-        host.meta_data[options[:by]] == options[:value]
-      end
-    end
-
   end
 
   def initialize(options = {})
@@ -33,5 +25,4 @@ class Host < Model
   def default_template
     :hosts
   end
-
 end
