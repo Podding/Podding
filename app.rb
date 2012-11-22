@@ -27,6 +27,7 @@ class Podding < Sinatra::Base
   set :public_folder, source_dir + '/assets'
   set :views, source_dir + '/templates'
   set :pages, source_dir + '/pages'
+  set :hosts, source_dir + '/hosts'
   set :episodes, source_dir + '/episodes'
 
   configure :production do
