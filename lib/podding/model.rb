@@ -23,6 +23,7 @@ class Model
     split_content = split_content_and_meta(content_path)
     @content = split_content[:content]
     @meta_data = split_content[:meta_data]
+    add_methods
   end
 
   def template
@@ -39,6 +40,14 @@ class Model
 
   def content_path
     raise NotImplementedError
+  end
+
+  private
+
+  def add_methods
+    @meta_data.keys.each do |key|
+      self.class.send(:define_method, key, Proc.new { @meta_data[key] })
+    end
   end
 
 end
