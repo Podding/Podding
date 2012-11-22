@@ -3,7 +3,8 @@
   - if host.image_url
     img src="#{ host.image_url }"
 
-  h4 #{ host.name }
+  h4: a href="/pages/hosts/#{ host.handle }"
+    | #{ host.name }
 
   - if host.quip
     <span class="quip">#{ host.quip }</span>

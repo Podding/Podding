@@ -13,6 +13,10 @@ class Host < Model
     end
 
     def find(options = {})
+      hosts = all(options)
+      hosts.select do |host|
+        host.meta_data[options[:by]] == options[:value]
+      end
     end
 
     def scan_hosts(base_path)
@@ -23,6 +27,7 @@ class Host < Model
   end
 
   def initialize(options = {})
+    @name = options[:name]
     super(options)
   end
 

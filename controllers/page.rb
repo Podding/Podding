@@ -14,6 +14,11 @@ class Podding < Sinatra::Base
     slim :hosts
   end
 
+  get "/pages/hosts/:name" do |name|
+    @hosts = Host.find(by: "handle", value: name, path: settings.hosts)
+    slim :hosts
+  end
+
   get "/pages/:name" do |name|
     @page = Page.new(name: name, path: settings.pages)
     slim @page.template
