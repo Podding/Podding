@@ -69,7 +69,7 @@ class Model
   end
 
   def respond_to?(meth)
-    if @meta_data.has_key?(meth)
+    if @meta_data && @meta_data.has_key?(meth)
       true
     else
       super
