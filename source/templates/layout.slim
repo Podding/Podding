@@ -7,10 +7,7 @@ html
 
       == slim :"includes/_header"
 
-      #content.page-single.page
-        == slim :"includes/_page-title", :locals => { :page_title => "title",  :page_url => "http://foo.bar", :page_icon => "book"}
-
-        == yield
+      == yield
 
       == slim :"includes/_sidebar"
 

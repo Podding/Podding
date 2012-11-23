@@ -1,3 +1,5 @@
-#page-content.text-content-long
-  == markdown @page.content
+#content
+  == slim :"includes/_page-title", :locals => { :page_title => "Title",  :page_url => "http://foo.bar", :page_icon => "book"}
+  #page-content.text-content-long
+    == markdown @page.content
 

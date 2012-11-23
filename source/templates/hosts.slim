@@ -1,4 +1,5 @@
 #content.page-single.page.page-crew
+  == slim :"includes/_page-title", :locals => { :page_title => "Hosts", :page_url => "http://foo.bar", :page_icon => "group"}
   - for host in @hosts do
     == slim :"includes/_host", :locals => { :host => host }
 
