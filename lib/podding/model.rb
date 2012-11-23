@@ -9,12 +9,16 @@ class Model
 
     attr_accessor :base_path
 
-    def all(options = {})
-      raise NotImplementedError
+    def all
+      all_files = scan_files
+
+      all_files.map do |path|
+        self.new(path: path)
+      end
     end
 
     def find(options = {})
-      models = all(options)
+      models = all
       models.select do |model|
         model.meta_data[options[:by]] == options[:value]
       end

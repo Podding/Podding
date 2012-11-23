@@ -2,12 +2,6 @@
 
 class Page < Model
 
-  class << self
-
-    def all(options = {})
-    end
-  end
-
   def initialize(options = {})
     @name = options[:name]
 
