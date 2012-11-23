@@ -15,7 +15,7 @@ class Page < Model
   end
 
   def content_path
-    "#{ @path }/#{ @name }.md"
+    "#{ self.class.path }/#{ @name }.md"
   end
 
   def default_template
