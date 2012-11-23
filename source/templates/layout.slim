@@ -8,8 +8,7 @@ html
       == slim :"includes/_header"
 
       #content.page-single.page
-        h2.page-title: a.title-link.link-icon href=""
-          | <i class="icon-book"></i> Title
+        == slim :"includes/_page-title", :locals => { :page_title => "title",  :page_url => "http://foo.bar", :page_icon => "book"}
 
         == yield
 
