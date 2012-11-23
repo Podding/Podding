@@ -15,3 +15,12 @@ def app
 end
 
 Model.base_path = File.dirname(__FILE__) + '/source'
+Podding.set :views, File.dirname(__FILE__) + '/source/templates'
+
+def validate_meta_data(url, options)
+  get url
+  options.each do |key, value|
+    assert_match %r{<p>#{ key }: #{ value }</p>}, last_response.body
+  end
+end
+

@@ -1,0 +1,6 @@
+- for host in @hosts do
+
+  == markdown host.content
+
+  - for key, value in host.meta_data
+    p #{ key }: #{ value }

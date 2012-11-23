@@ -1,0 +1,9 @@
+h1 #{ @episodes.count } Episodes
+
+- for episode in @episodes do
+
+  == markdown episode.content
+
+  - for key, value in episode.meta_data
+
+    p #{ key }: #{ value }
