@@ -1,6 +1,9 @@
 doctype html
 html
-  == slim :"includes/_head", :locals => { :title => @page.title }
+  - if defined? @page.title
+    == slim :"includes/_head", :locals => { :title => @page.title }
+  - else 
+    == slim :"includes/_head", :locals => { :title => "" }
 
   body
     #wrapper
