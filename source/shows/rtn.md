@@ -1,5 +1,5 @@
 ---
 show: "rtn"
-show_title: "Retinauten"
+title: "Retinauten"
 ---
 This is a show about stuff by people.
