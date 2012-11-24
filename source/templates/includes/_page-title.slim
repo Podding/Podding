@@ -1,7 +1,8 @@
-h2.page-title: a.title-link.link-icon href="#{page_url}"
-  <i class="icon-#{page_icon}"></i> 
-  - if defined? page_title_label
-    span.title-label #{page_title_label}
-  span #{page_title}
-  - if defined? page_quip
-    span.quip #{page_quip}
+h2.page-title: a.title-link.link-icon href=""
+  - if defined? page.icon
+    <i class="icon-#{ page.icon }"></i> 
+  - if defined? page.title_label
+    span.title-label #{ page.title_label }
+  span #{ page.title }
+  - if defined? page.quip
+    span.quip #{ page.quip }

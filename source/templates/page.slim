@@ -1,5 +1,5 @@
 #content
-  == slim :"includes/_page-title", :locals => { :page_title => "#{ @page.title }",  :page_url => "http://foo.bar", :page_icon => "book"}
+  == slim :"includes/_page-title", :locals => { :page => @page }
   #page-content.text-content-long
     == markdown @page.content
 
