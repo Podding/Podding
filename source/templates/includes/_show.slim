@@ -1,0 +1,12 @@
+.show 
+	h4: { show.title }
+	.description
+		== markdown show.content
+	.episode-list
+	  #planned-episodes
+	   
+	  #live-episodes
+
+	  #published-episodes
+	    - for episode in @episodes do
+	      == slim :"includes/_episode", :locals => { :episode => episode, :mode => "short" }
