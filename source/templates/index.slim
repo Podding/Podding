@@ -35,7 +35,7 @@
   #published-episodes
 
     - for episode in @episodes do
-      == slim :"includes/_episode", :locals => { :episode => episode }
+      == slim :"includes/_episode", :locals => { :episode => episode, :mode => "short" }
 
 
   #paging-links
