@@ -1,5 +1,6 @@
 ---
 title: "Über uns"
+icon: "book"
 ---
 
 ### Foo
