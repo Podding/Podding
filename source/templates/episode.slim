@@ -1,6 +1,3 @@
-h2 #{ episode.title }
+#content.single-episode
 
-<br />
-
-== markdown episode.content
-
+	== slim :"includes/_episode", :locals => { :episode => episode, :mode => "full" }
