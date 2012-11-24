@@ -1,0 +1,8 @@
+h1 Shows default template
+
+- for show in @shows do
+
+  == markdown show.content
+
+  - for key, value in show.meta_data
+    p #{ key }: #{ value }
