@@ -20,7 +20,17 @@ class Model
     def find(options = {})
       models = all
       models.select do |model|
-        model.meta_data[options[:by]] == options[:value]
+        match = true
+        options.each do |param, value|
+          puts model.meta_data.inspect
+          puts options
+          if(model.meta_data[param.to_s] != value)
+            match = false
+            break
+          end
+        end
+
+        match
       end
     end
 
