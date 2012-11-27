@@ -8,7 +8,7 @@ class Podding < Sinatra::Base
   end
 
   get "/shows/:name" do |name|
-    @shows = Show.find(by: "name", value: name)
+    @shows = Show.find(name: name)
     slim @shows.first.template
   end
 
