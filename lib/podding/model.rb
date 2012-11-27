@@ -22,8 +22,6 @@ class Model
       models.select do |model|
         match = true
         options.each do |param, value|
-          puts model.meta_data.inspect
-          puts options
           if(model.meta_data[param.to_s] != value)
             match = false
             break
