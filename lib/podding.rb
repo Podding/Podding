@@ -2,6 +2,7 @@
 
 # Mixins
 require_relative 'mixins/read_content'
+require_relative 'mixins/read_config'
 
 # Base lib
 require_relative 'podding/helper'

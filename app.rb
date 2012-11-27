@@ -17,9 +17,12 @@ require 'ohm'
 require_relative 'lib/podding'
 
 class Podding < Sinatra::Base
+
   enable :sessions, :static, :logging
 
   source_dir = File.dirname(__FILE__) + '/source'
+
+  set :config, Config.load(source_dir + '/config.yaml')
 
   set :root, File.dirname(__FILE__)
   register Sinatra::AssetPack
