@@ -16,15 +16,15 @@ class HostTest < MiniTest::Unit::TestCase
 
   def test_template_rendering
     validate_meta_data("/hosts/derp0", {
-      handle: "derp0",
-      name: "Derp Inger",
+      name: "derp0",
+      full_name: "Derp Inger",
       twitter_name: "doh",
       image_url: "http://placekitten.com/300/300"
     })
 
     validate_meta_data("/hosts/foo_bert", {
-      handle: "foo_bert",
-      name: "Foo bert",
+      name: "foo_bert",
+      full_name: "Foo bert",
       twitter_name: "durr",
       image_url: "http://placedog.com/400/400",
       quip: "huh!"

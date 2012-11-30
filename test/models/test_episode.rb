@@ -37,4 +37,14 @@ class EpisodeModelTest < MiniTest::Unit::TestCase
     assert_equal 3, Episode.find(status: "published").count
   end
 
+  def test_hosts_count
+    episode = Episode.first(title: "Derp Herp derp")
+    assert_equal 2, episode.hosts.count
+  end
+
+  def test_hosts_type
+    episode = Episode.first(title: "Derp Herp derp")
+    assert episode.hosts.all? { |e| e.instance_of?(Host) }
+  end
+
 end
