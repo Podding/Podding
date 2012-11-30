@@ -13,4 +13,10 @@ class Episode < Model
   def default_template
     :episode
   end
+
+  def hosts
+    @meta_data["hosts"].map do |host|
+      Host.first(name: host)
+    end
+  end
 end
