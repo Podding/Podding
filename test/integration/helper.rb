@@ -6,7 +6,7 @@ require 'minitest/autorun'
 require 'minitest/benchmark'
 require 'rack/test'
 
-require_relative '../app'
+require_relative '../../app'
 
 include Rack::Test::Methods
 
@@ -14,8 +14,8 @@ def app
   Podding
 end
 
-Model.base_path = File.dirname(__FILE__) + '/source'
-Podding.set :views, File.dirname(__FILE__) + '/source/templates'
+Model.base_path = File.dirname(__FILE__) + '/../source'
+Podding.set :views, File.dirname(__FILE__) + '/../source/templates'
 
 def validate_meta_data(url, options)
   get url
