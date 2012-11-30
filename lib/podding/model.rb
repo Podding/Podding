@@ -3,7 +3,7 @@
 class Model
   include ReadContent
 
-  attr_reader :content, :meta_data
+  attr_reader :path, :content, :meta_data
 
   class << self
 
@@ -22,7 +22,7 @@ class Model
       models.select do |model|
         match = true
         options.each do |param, value|
-          if(model.meta_data[param.to_s] != value)
+          if model.meta_data[param.to_s] != value
             match = false
             break
           end

@@ -20,7 +20,7 @@ class IndexTest < MiniTest::Unit::TestCase
 
   def test_template_rendering
     get '/'
-    assert_match %r{<h1>3 Episodes</h1>}, last_response.body
+    assert_match %r{<h1>5 Episodes</h1>}, last_response.body
 
     validate_meta_data("/", {
       title: "Derp Herp derp",
@@ -29,7 +29,6 @@ class IndexTest < MiniTest::Unit::TestCase
       id: "s01e01",
       date: "15.3.2012",
       status: "published",
-      comments: "8",
     })
   end
 
