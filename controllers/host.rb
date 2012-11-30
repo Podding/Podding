@@ -7,9 +7,9 @@ class Podding < Sinatra::Base
     slim :hosts
   end
 
-  get "/hosts/:handle" do |handle|
-    @hosts = Host.find(handle: handle)
-    slim :hosts
+  get "/hosts/:name" do |name|
+    @hosts = Host.find(name: name)
+    slim @hosts.first.template
   end
 
 end
