@@ -32,6 +32,10 @@ class Model
       end
     end
 
+    def first(options = {})
+      find(options).first
+    end
+
     def path
       name = self.name.downcase + "s"
       "#{ Model.base_path }/#{ name }"
