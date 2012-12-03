@@ -1,9 +1,6 @@
 # encoding: utf-8
 
 class Model
-  include ReadContent
-
-  attr_reader :path, :content, :meta_data
 
   class << self
 
@@ -48,11 +45,32 @@ class Model
 
   end
 
+
+  attr_reader :path, :content, :meta_data
+
   def initialize(options = {})
     @path = options[:path]
     split_content = split_content_and_meta(content_path)
     @content = split_content[:content]
     @meta_data = split_content[:meta_data]
+  end
+
+  def split_content_and_meta(path)
+    data = ""
+    content = File.read(path)
+
+    begin
+      if match = content.match(/^(---\s*\n(.*?)\n?)^(---\s*$\n?)(.*)/m)
+        data = YAML.load(match[2])
+        content = match[4]
+      else
+        data = { }
+      end
+    rescue => e
+      raise "YAML Exception reading #{path}: #{e.message}"
+    end
+
+    { content: content, meta_data: data }
   end
 
   def template

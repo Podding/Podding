@@ -9,6 +9,7 @@ end
 require 'bundler/setup'
 require 'sinatra/base'
 require 'sinatra/assetpack'
+require 'sinatra/config_file'
 require 'slim'
 require 'less'
 require 'redcarpet'
@@ -17,12 +18,12 @@ require 'ohm'
 require_relative 'lib/podding'
 
 class Podding < Sinatra::Base
+  register Sinatra::ConfigFile
 
   enable :sessions, :static, :logging
 
   source_dir = File.dirname(__FILE__) + '/source'
-
-  set :config, Config.load(source_dir + '/config.yaml')
+  config_file "#{ source_dir }/config.yaml"
 
   set :root, File.dirname(__FILE__)
   register Sinatra::AssetPack
