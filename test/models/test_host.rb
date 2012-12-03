@@ -1,7 +1,6 @@
 require_relative 'helper'
 
 class HostModelTest < MiniTest::Unit::TestCase
-
   def setup
     @hosts = Host.all
   end
