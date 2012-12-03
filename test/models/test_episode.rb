@@ -47,4 +47,9 @@ class EpisodeModelTest < MiniTest::Unit::TestCase
     assert episode.hosts.all? { |e| e.instance_of?(Host) }
   end
 
+  def test_empty_hosts
+    episode = Episode.first(title: "Trolololo")
+    assert_equal [], episode.hosts
+  end
+
 end

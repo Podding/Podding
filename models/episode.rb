@@ -15,8 +15,12 @@ class Episode < Model
   end
 
   def hosts
-    @meta_data["hosts"].map do |host|
-      Host.first(name: host)
+    if host_names = @meta_data["hosts"]
+      host_names.map do |host|
+        Host.first(name: host)
+      end
+    else
+      [ ]
     end
   end
 end
