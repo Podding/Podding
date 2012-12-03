@@ -3,6 +3,7 @@
 class Podding < Sinatra::Base
 
   get "/hosts" do
+    @page = Page.new(name: "hosts")
     @hosts = Host.all
     slim :hosts
   end
