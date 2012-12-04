@@ -14,6 +14,10 @@ class Episode < Model
     :episode
   end
 
+  def show
+    Show.first(name: @meta_data["show"])
+  end
+
   def hosts
     if host_names = @meta_data["hosts"]
       if host_names.respond_to?(:map)
