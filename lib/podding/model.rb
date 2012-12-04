@@ -6,31 +6,36 @@ class Model
 
     attr_accessor :base_path
 
+    def first(options = {})
+      find(options).first
+    end
+
+    def find(options = {})
+      all.select do |model|
+        options.all? do |param, value|
+          model.meta_data[param.to_s] == value
+        end
+      end
+    end
+
+    def find_match(options = {})
+      all.select do |model|
+        options.all? do |param, value|
+          data = model.meta_data[param.to_s]
+          case data
+          when Enumerable then data.grep(value)
+          when String, Regexp then data.match(value)
+          end if data
+        end
+      end
+    end
+
     def all
       all_files = scan_files
 
       all_files.map do |path|
         self.new(path: path)
       end
-    end
-
-    def find(options = {})
-      models = all
-      models.select do |model|
-        match = true
-        options.each do |param, value|
-          if model.meta_data[param.to_s] != value
-            match = false
-            break
-          end
-        end
-
-        match
-      end
-    end
-
-    def first(options = {})
-      find(options).first
     end
 
     def path
