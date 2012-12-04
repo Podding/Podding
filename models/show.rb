@@ -14,4 +14,8 @@ class Show < Model
     :shows
   end
 
+  def episodes
+    Episode.find(show: @meta_data["name"])
+  end
+
 end
