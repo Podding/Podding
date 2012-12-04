@@ -52,4 +52,13 @@ class EpisodeModelTest < MiniTest::Unit::TestCase
     assert_equal [], episode.hosts
   end
 
+  def test_one_host
+    episode = Episode.first(title: "Asdf")
+    assert episode.hosts.kind_of?(Enumerable)
+    assert episode.hosts.all? { |e| e.instance_of?(Host) }
+    assert_equal 1, episode.hosts.count
+    assert_equal "derp0", episode.hosts.first.name
+    assert_equal "Derp Inger", episode.hosts.first.full_name
+  end
+
 end
