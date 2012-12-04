@@ -50,4 +50,13 @@ class HostModelTest < MiniTest::Unit::TestCase
     assert_equal 1, Host.find(quip: "huh!").count
   end
 
+  # Test relation to Episode
+
+  def test_episodes_count
+    host = Host.first(name: "derp0")
+    assert_equal 3, host.episodes.count
+    host = Host.first(name: "foo_bert")
+    assert_equal 2, host.episodes.count
+  end
+
 end
