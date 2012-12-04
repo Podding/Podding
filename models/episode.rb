@@ -16,8 +16,12 @@ class Episode < Model
 
   def hosts
     if host_names = @meta_data["hosts"]
-      host_names.map do |host|
-        Host.first(name: host)
+      if host_names.respond_to?(:map)
+        host_names.map do |host|
+          Host.first(name: host)
+        end
+      else
+        Array(Host.first(name: host_names))
       end
     else
       [ ]
