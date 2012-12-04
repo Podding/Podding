@@ -23,9 +23,10 @@ class EpisodeModelTest < MiniTest::Unit::TestCase
   end
 
   def test_find_by_show
-    assert_equal 2, Episode.find(show: "foo").count
+    assert_equal 1, Episode.find(show: "foo").count
     assert_equal 1, Episode.find(show: "bar").count
-    assert_equal 1, Episode.find(show: "show1").count
+    assert_equal 2, Episode.find(show: "show1").count
+    assert_equal 1, Episode.find(show: "show_2").count
   end
 
   def test_find_by_title
@@ -40,11 +41,9 @@ class EpisodeModelTest < MiniTest::Unit::TestCase
 
   def test_find_match_by_host
     episodes = Episode.find_match(hosts: "derp0")
-    assert_equal 2, episodes.count
+    assert_equal 3, episodes.count
     episodes = Episode.find_match(hosts: /derp[\d]?/)
-    assert_equal 2, episodes.count
-    episodes = Episode.find_match(hosts: /derp[\d]?/)
-    assert_equal 2, episodes.count
+    assert_equal 3, episodes.count
   end
 
   # Test relation to Host
@@ -78,7 +77,7 @@ class EpisodeModelTest < MiniTest::Unit::TestCase
   def test_show_type
     episode = Episode.first(title: "Asdf")
     assert episode.show.instance_of?(Show)
-    assert_equal "show1", episode.show.name
+    assert_equal episode.meta_data["show"], episode.show.name
   end
 
 end

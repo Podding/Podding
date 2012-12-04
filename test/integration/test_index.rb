@@ -25,7 +25,6 @@ class IndexTest < MiniTest::Unit::TestCase
     validate_meta_data("/", {
       title: "Derp Herp derp",
       show: "bar",
-      show_title: "bar bar",
       id: "s01e01",
       date: "15.3.2012",
       status: "published",
