@@ -3,7 +3,6 @@
 class Host < Model
 
   def initialize(options = {})
-    @name = options[:name]
     super(options)
   end
 
@@ -14,4 +13,9 @@ class Host < Model
   def default_template
     :hosts
   end
+
+  def episodes
+    Episode.find_match(host: [self.name])
+  end
+
 end

@@ -24,7 +24,8 @@ class EpisodeModelTest < MiniTest::Unit::TestCase
 
   def test_find_by_show
     assert_equal 2, Episode.find(show: "foo").count
-    assert_equal 2, Episode.find(show: "bar").count
+    assert_equal 1, Episode.find(show: "bar").count
+    assert_equal 1, Episode.find(show: "show1").count
   end
 
   def test_find_by_title
@@ -59,6 +60,14 @@ class EpisodeModelTest < MiniTest::Unit::TestCase
     assert_equal 1, episode.hosts.count
     assert_equal "derp0", episode.hosts.first.name
     assert_equal "Derp Inger", episode.hosts.first.full_name
+  end
+
+  # Test relation to Show
+
+  def test_show_type
+    episode = Episode.first(title: "Asdf")
+    assert episode.show.instance_of?(Show)
+    assert_equal "show1", episode.show.name
   end
 
 end

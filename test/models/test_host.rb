@@ -49,4 +49,5 @@ class HostModelTest < MiniTest::Unit::TestCase
     assert_equal 1, Host.find(quip: "woah!").count
     assert_equal 1, Host.find(quip: "huh!").count
   end
-end 
+
+end
