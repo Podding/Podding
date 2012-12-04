@@ -15,7 +15,7 @@ class Host < Model
   end
 
   def episodes
-    Episode.find_match(host: [self.name])
+    Episode.find_match(hosts: @meta_data["name"])
   end
 
 end
