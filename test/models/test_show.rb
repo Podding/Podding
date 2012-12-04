@@ -23,7 +23,7 @@ class ShowModelTest < MiniTest::Unit::TestCase
 
   def test_find_show_by_name
     assert 1, Show.find(name: "show1").count
-    assert 1, Show.find(name: "show2").count
+    assert 1, Show.find(name: "show_2").count
   end
 
   def test_find_show_by_title
@@ -34,4 +34,14 @@ class ShowModelTest < MiniTest::Unit::TestCase
   def test_find_show_by_template
     assert 1, Show.find(template: "custom_shows_template").count
   end
+
+  # Test relation to Episode
+
+  def test_episodes_count
+    host = Show.first(name: "show1")
+    assert_equal 2, host.episodes.count
+    host = Show.first(name: "show_2")
+    assert_equal 1, host.episodes.count
+  end
+
 end
