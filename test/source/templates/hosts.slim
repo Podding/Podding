@@ -4,3 +4,8 @@
 
   - for key, value in host.meta_data
     p #{ key }: #{ value }
+
+    h2 Episodes:
+
+    - for episode in host.episodes
+      p episode.title
