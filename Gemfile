@@ -10,10 +10,10 @@ gem 'shotgun'
 
 # Templating
 gem 'redcarpet'
-gem 'therubyracer'
 gem 'slim'
 gem 'less'
+gem 'therubyracer'
 
 # Data
 
-gem 'ohm'
+gem 'scrivener'

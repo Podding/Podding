@@ -9,19 +9,12 @@ GEM
     less (2.2.2)
       commonjs (~> 0.2.6)
     libv8 (3.3.10.4)
-    nest (1.1.2)
-      redis
-    ohm (1.2.0)
-      nest (~> 1.0)
-      redis
-      scrivener (~> 0.0.3)
     rack (1.4.1)
     rack-protection (1.2.0)
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
     redcarpet (2.2.2)
-    redis (3.0.2)
     scrivener (0.0.3)
     shotgun (0.9)
       rack (>= 1.0)
@@ -58,9 +51,9 @@ PLATFORMS
 
 DEPENDENCIES
   less
-  ohm
   rack
   redcarpet
+  scrivener
   shotgun
   sinatra
   sinatra-assetpack
