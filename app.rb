@@ -13,7 +13,6 @@ require 'sinatra/config_file'
 require 'slim'
 require 'less'
 require 'redcarpet'
-require 'ohm'
 
 require_relative 'lib/podding'
 
