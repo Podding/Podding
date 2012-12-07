@@ -97,11 +97,7 @@ class Model
   end
 
   def default_template
-    raise NotImplementedError
-  end
-
-  def content_path
-    raise NotImplementedError
+    self.class.name.downcase.to_sym
   end
 
   # Dynamic meta data lookup
