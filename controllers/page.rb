@@ -5,7 +5,7 @@ class Podding < Sinatra::Base
   # Special pages
 
   get "/pages/archive" do
-    @page = Page.new(name: "archive")
+    @page = Page.first(name: "archive")
     @episodes = Episode.all
     slim :archive
   end
