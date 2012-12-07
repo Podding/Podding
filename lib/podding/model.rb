@@ -27,7 +27,7 @@ class Model
           data = model.meta_data[param.to_s]
           case data
           when Enumerable then data.grep(value)
-          when String, Regexp then data.match(value)
+          when String then data.match(value)
           end if data
         end
       end
