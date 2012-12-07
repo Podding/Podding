@@ -2,7 +2,7 @@
 
 class Episode < Model
 
-  def self.default_sort_order
+  def self.default_sort_by
     :date
   end
 
