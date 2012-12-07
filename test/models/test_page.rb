@@ -24,6 +24,10 @@ class PageModelTest < MiniTest::Unit::TestCase
     assert @pages.all? { |s| File.exist? s.path }
   end
 
+  def test_validity
+    assert @pages.all? { |p| p.valid? }
+  end
+
   def test_find_page_by_name
     assert 1, Page.find(name: "page1").count
     assert 1, Page.find(name: "page2").count

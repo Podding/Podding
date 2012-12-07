@@ -26,6 +26,10 @@ class EpisodeModelTest < MiniTest::Unit::TestCase
     assert @episodes.all? { |e| File.exist? e.path }
   end
 
+  def test_validity
+    assert @episodes.all? { |e| e.valid? }
+  end
+
   def test_episode_sorting
     assert_equal @episodes.sort_by(&:date), @episodes
   end

@@ -21,6 +21,10 @@ class HostModelTest < MiniTest::Unit::TestCase
     assert @hosts.all? { |h| File.exist? h.path }
   end
 
+  def test_validity
+    assert @hosts.all? { |h| h.valid? }
+  end
+
   # Test find()
 
   def test_find_host_by_name

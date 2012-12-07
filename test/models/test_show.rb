@@ -25,6 +25,10 @@ class ShowModelTest < MiniTest::Unit::TestCase
     assert @shows.all? { |s| File.exist? s.path }
   end
 
+  def test_validity
+    assert @shows.all? { |s| s.valid? }
+  end
+
   # Test find()
 
   def test_find_show_by_name
