@@ -53,14 +53,20 @@ class EpisodeModelTest < MiniTest::Unit::TestCase
     assert_equal 3, Episode.find(status: "published").count
   end
 
+  # Test relation to Host
+
   def test_find_match_by_host
     episodes = Episode.find_match(hosts: "derp0")
-    assert_equal 3, episodes.count
+    assert_equal 2, episodes.count
     episodes = Episode.find_match(hosts: /derp[\d]?/)
-    assert_equal 3, episodes.count
+    assert_equal 2, episodes.count
   end
 
-  # Test relation to Host
+  def test_find_match_nonexistant_host
+    episodes = Episode.find_match(hosts: "non_existing")
+    assert_equal [ ], episodes
+  end
+
 
   def test_hosts_count
     episode = Episode.first(title: "Derp Herp derp")

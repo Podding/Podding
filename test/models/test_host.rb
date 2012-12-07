@@ -60,7 +60,7 @@ class HostModelTest < MiniTest::Unit::TestCase
 
   def test_episodes_count
     host = Host.first(name: "derp0")
-    assert_equal 3, host.episodes.count
+    assert_equal 2, host.episodes.count
     host = Host.first(name: "foo_bert")
     assert_equal 2, host.episodes.count
   end
