@@ -1,6 +1,9 @@
 # encoding: utf-8
 
+require 'scrivener'
+
 class Model
+  include Scrivener::Validations
 
   class << self
 
@@ -44,20 +47,27 @@ class Model
     end
 
     def scan_files
-      files = "#{ path }/**/*.md"
+      files = "#{ path }/**/*.{markdown,md}"
       Dir[files]
     end
 
-  end
+    def default_sort_order
+      :name
+    end
 
+  end
 
   attr_reader :path, :content, :meta_data
 
   def initialize(options = {})
     @path = options[:path]
-    split_content = split_content_and_meta(content_path)
+    split_content = split_content_and_meta(@path)
     @content = split_content[:content]
     @meta_data = split_content[:meta_data]
+  end
+
+  def validate
+    assert_present :name
   end
 
   def split_content_and_meta(path)
