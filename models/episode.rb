@@ -2,16 +2,16 @@
 
 class Episode < Model
 
+  def self.default_sort_order
+    :date
+  end
+
   def initialize(options = {})
     super(options)
   end
 
-  def content_path
-    @path
-  end
-
-  def default_template
-    :episode
+  def validate
+    assert_present :date
   end
 
   def show
@@ -31,4 +31,5 @@ class Episode < Model
       [ ]
     end
   end
+
 end
