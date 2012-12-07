@@ -65,4 +65,11 @@ class HostModelTest < MiniTest::Unit::TestCase
     assert_equal 2, host.episodes.count
   end
 
+  def test_episode_relation
+    host = Host.first(name: "derp0")
+    host.episodes.each do |episode|
+      assert host, episode.host
+    end
+  end
+
 end

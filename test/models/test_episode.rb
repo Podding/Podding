@@ -77,6 +77,11 @@ class EpisodeModelTest < MiniTest::Unit::TestCase
     assert_equal [], episode.hosts
   end
 
+  def test_host_relation
+    episode = Episode.first(title: "Asdf")
+    assert episode.hosts.all? { |h| h.episodes.select { |e| episode == e } }
+  end
+
   def test_non_array_host
     episode = Episode.first(title: "Asdf")
     assert episode.hosts.kind_of?(Enumerable)
@@ -92,6 +97,11 @@ class EpisodeModelTest < MiniTest::Unit::TestCase
     episode = Episode.first(title: "Asdf")
     assert episode.show.instance_of?(Show)
     assert_equal episode.meta_data["show"], episode.show.name
+  end
+
+  def test_show_relation
+    episode = Episode.first(title: "Asdf")
+    assert episode.show.episodes.select { |e| episode == e }
   end
 
 end

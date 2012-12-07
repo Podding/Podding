@@ -48,10 +48,15 @@ class ShowModelTest < MiniTest::Unit::TestCase
   # Test relation to Episode
 
   def test_episodes_count
-    host = Show.first(name: "show1")
-    assert_equal 2, host.episodes.count
-    host = Show.first(name: "show_2")
-    assert_equal 1, host.episodes.count
+    show = Show.first(name: "show1")
+    assert_equal 2, show.episodes.count
+    show = Show.first(name: "show_2")
+    assert_equal 1, show.episodes.count
+  end
+
+  def test_episodes_relation
+    show = Show.first(name: "show1")
+    show.episodes.each { |e| assert_equal show.meta_data, e.show.meta_data }
   end
 
 end
