@@ -25,10 +25,14 @@ class Model
       all.select do |model|
         options.all? do |param, value|
           data = model.meta_data[param.to_s]
-          case data
-          when Enumerable then data.grep(value)
-          when String then data.match(value)
-          end if data
+          if data
+            result = case data
+                     when Enumerable then data.grep(value)
+                     when String then data.match(value)
+                     end
+
+            result && result.size > 0
+          end
         end
       end
     end
