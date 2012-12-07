@@ -11,7 +11,7 @@ class Podding < Sinatra::Base
   end
 
   get "/pages/:name" do |name|
-    @page = Page.new(name: name)
+    @page = Page.first(name: name)
     slim @page.template
   end
 
