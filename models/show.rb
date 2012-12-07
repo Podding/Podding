@@ -6,10 +6,6 @@ class Show < Model
     super(options)
   end
 
-  def content_path
-    @path
-  end
-
   def default_template
     :shows
   end
