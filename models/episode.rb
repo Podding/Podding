@@ -12,6 +12,7 @@ class Episode < Model
 
   def validate
     assert_present :date
+    assert_present :status
   end
 
   def show

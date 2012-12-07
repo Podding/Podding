@@ -14,4 +14,12 @@ class Show < Model
     Episode.find(show: @meta_data["name"])
   end
 
+  def published_episodes
+    Episode.find(show: @meta_data["name"], status: "published")
+  end
+
+  def planned_episodes
+    Episode.find(show: @meta_data["name"], status: "planned")
+  end
+
 end
