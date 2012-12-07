@@ -1,4 +1,5 @@
 ---
+name: "fuuuuu"
 title: "Fuuuuuu"
 show: "show1"
 id: "23"

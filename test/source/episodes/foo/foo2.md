@@ -1,4 +1,5 @@
 ---
+name: "f000"
 title: "F000"
 show: "foo"
 show_title: "Fu! Fu"

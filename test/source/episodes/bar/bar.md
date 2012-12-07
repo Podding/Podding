@@ -1,4 +1,5 @@
 ---
+name: "derp_derp_derp"
 title: "Derp Herp derp"
 show: "bar"
 id: "s01e01"

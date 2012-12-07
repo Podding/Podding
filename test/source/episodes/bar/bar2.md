@@ -1,4 +1,5 @@
 ---
+name: "asdf"
 title: "Asdf"
 show: "show1"
 id: "s01e02"

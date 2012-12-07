@@ -1,4 +1,5 @@
 ---
+name: trololololo
 title: "Trolololo"
 show: "show_2"
 id: "11"
