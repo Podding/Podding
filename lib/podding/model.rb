@@ -38,7 +38,7 @@ class Model
 
       all_files.map do |path|
         self.new(path: path)
-      end
+      end.sort_by &default_sort_order
     end
 
     def path
