@@ -1,4 +1,5 @@
 ---
+name: page1
 foo: bar
 hurr: durr
 baz: lol

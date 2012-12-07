@@ -1,4 +1,5 @@
 ---
+name: page2
 template: "custom_page_template"
 asdf: "hkll"
 so: "no"
