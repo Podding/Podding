@@ -6,6 +6,10 @@ class EpisodeModelTest < MiniTest::Unit::TestCase
     @episodes = Episode.all
   end
 
+  def test_files_amount
+    assert_equal 5, Episode.scan_files.count
+  end
+
   def test_episode_amount
     assert_equal 5, @episodes.count
   end
@@ -21,6 +25,12 @@ class EpisodeModelTest < MiniTest::Unit::TestCase
   def test_episode_path
     assert @episodes.all? { |e| File.exist? e.path }
   end
+
+  def test_episode_sorting
+    assert_equal @episodes.sort_by(&:date), @episodes
+  end
+
+  # Test find()
 
   def test_find_by_show
     assert_equal 1, Episode.find(show: "foo").count

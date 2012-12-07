@@ -21,6 +21,8 @@ class HostModelTest < MiniTest::Unit::TestCase
     assert @hosts.all? { |h| File.exist? h.path }
   end
 
+  # Test find()
+
   def test_find_host_by_name
     assert_equal 1, Host.find(name: "derp0").count
     assert_equal 1, Host.find(name: "foo_bert").count

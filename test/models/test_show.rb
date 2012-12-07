@@ -5,6 +5,10 @@ class ShowModelTest < MiniTest::Unit::TestCase
     @shows = Show.all
   end
 
+  def test_files_amount
+    assert_equal 2, Show.scan_files.count
+  end
+
   def test_show_amount
     assert_equal 2, @shows.count
   end
@@ -20,6 +24,8 @@ class ShowModelTest < MiniTest::Unit::TestCase
   def test_show_path
     assert @shows.all? { |s| File.exist? s.path }
   end
+
+  # Test find()
 
   def test_find_show_by_name
     assert 1, Show.find(name: "show1").count
