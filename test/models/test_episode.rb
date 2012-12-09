@@ -62,7 +62,7 @@ class EpisodeModelTest < MiniTest::Unit::TestCase
     assert_equal 2, episodes.count
   end
 
-  def test_find_match_nonexistant_host
+  def test_find_match_nonexistent_host
     episodes = Episode.find_match(hosts: "non_existing")
     assert_equal [ ], episodes
   end
