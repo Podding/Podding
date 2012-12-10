@@ -7,6 +7,7 @@ gem 'sinatra-assetpack', :require => 'sinatra/assetpack'
 gem 'sinatra-contrib'
 gem 'thin'
 gem 'shotgun'
+gem 'builder'
 
 # Templating
 gem 'redcarpet'
