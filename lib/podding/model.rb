@@ -46,7 +46,7 @@ class Model
     end
 
     def path
-      name = self.name.downcase + "s"
+      name = to_reference + "s"
       "#{ Model.base_path }/#{ name }"
     end
 
@@ -59,9 +59,44 @@ class Model
       :name
     end
 
+    # Manage relations between models
+
+    def attribute(name)
+      define_method(name) do
+        @meta_data[name.to_s]
+      end
+    end
+
+    def belongs_to(name, model)
+      define_method name do
+        name = name.to_s
+        model = Utils.class_lookup(self.class, model)
+        model.first(:name => self.meta_data[name])
+      end
+    end
+
+    def has_many(name, model, reference = to_reference)
+      define_method name do
+        model = Utils.class_lookup(self.class, model)
+        if reference.to_s.end_with?("s")
+          model.find_match(:"#{ reference }" => self.name)
+        else
+          model.find(:"#{ reference }" => self.name)
+        end
+      end
+    end
+
+    protected
+
+    def to_reference
+      self.name.downcase
+    end
+
   end
 
   attr_reader :path, :content, :meta_data
+
+  attribute :name
 
   def initialize(options = {})
     @path = options[:path]
