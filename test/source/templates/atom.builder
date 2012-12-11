@@ -1,0 +1,1 @@
+../../../source/templates/atom.builder

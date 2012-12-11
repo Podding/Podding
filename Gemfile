@@ -8,6 +8,7 @@ gem 'sinatra-contrib'
 gem 'thin'
 gem 'shotgun'
 gem 'builder'
+gem 'w3c_validators'
 
 # Templating
 gem 'redcarpet'

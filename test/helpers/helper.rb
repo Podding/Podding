@@ -3,6 +3,8 @@
 require 'minitest/autorun'
 require 'minitest/benchmark'
 
+require 'w3c_validators'
+
 require_relative '../../lib/podding'
 require_relative '../../helpers/urls'
 

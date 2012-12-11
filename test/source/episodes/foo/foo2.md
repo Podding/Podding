@@ -6,6 +6,10 @@ show_title: "Fu! Fu"
 id: "24"
 date: "01.01.2013"
 status: "unpublished"
+mp3: "f000.mp3"
+opus: "f000.opus"
+aac: "f000.m4a"
+ogg: "f000.ogg"
 ---
 # Faaaaa
 
