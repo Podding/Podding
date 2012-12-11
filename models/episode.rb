@@ -1,10 +1,11 @@
 # encoding: utf-8
 
+require 'date'
+
 class Episode < Model
 
   attribute :title
   attribute :status
-  attribute :date
   attribute :comments
 
   belongs_to :show, :Show
@@ -15,6 +16,10 @@ class Episode < Model
 
   def initialize(options = {})
     super(options)
+  end
+
+  def date
+    Date.parse(@meta_data["date"])
   end
 
   def validate
