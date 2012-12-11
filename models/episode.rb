@@ -2,6 +2,13 @@
 
 class Episode < Model
 
+  attribute :title
+  attribute :status
+  attribute :date
+  attribute :comments
+
+  belongs_to :show, :Show
+
   def self.default_sort_by
     :date
   end
@@ -15,18 +22,14 @@ class Episode < Model
     assert_present :status
   end
 
-  def show
-    Show.first(name: @meta_data["show"])
-  end
-
   def hosts
     if host_names = @meta_data["hosts"]
       if host_names.respond_to?(:map)
         host_names.map do |host|
-          Host.first(name: host)
+          Host.first(:name => host)
         end
       else
-        Array(Host.first(name: host_names))
+        Array(Host.first(:name => host_names))
       end
     else
       [ ]
