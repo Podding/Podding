@@ -147,4 +147,11 @@ class Model
     end
   end
 
+  def ==(other_model)
+    meta_equals = self.meta_data == other_model.meta_data
+    content_equals = self.content == other_model.content
+
+    meta_equals && content_equals
+  end
+
 end
