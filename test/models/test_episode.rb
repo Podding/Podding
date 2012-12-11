@@ -34,6 +34,10 @@ class EpisodeModelTest < MiniTest::Unit::TestCase
     assert_equal @episodes.sort_by(&:date), @episodes
   end
 
+  def test_episode_date
+    assert @episodes.all? { |e| e.date.instance_of?(Date) }
+  end
+
   # Test find()
 
   def test_find_by_show
