@@ -2,6 +2,8 @@
 
 class Episode < Model
 
+  belongs_to :show, :Show
+
   def self.default_sort_by
     :date
   end
@@ -13,10 +15,6 @@ class Episode < Model
   def validate
     assert_present :date
     assert_present :status
-  end
-
-  def show
-    Show.first(name: @meta_data["show"])
   end
 
   def hosts
