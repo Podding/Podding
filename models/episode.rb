@@ -2,6 +2,11 @@
 
 class Episode < Model
 
+  attribute :title
+  attribute :status
+  attribute :date
+  attribute :comments
+
   belongs_to :show, :Show
 
   def self.default_sort_by
@@ -21,10 +26,10 @@ class Episode < Model
     if host_names = @meta_data["hosts"]
       if host_names.respond_to?(:map)
         host_names.map do |host|
-          Host.first(name: host)
+          Host.first(:name => host)
         end
       else
-        Array(Host.first(name: host_names))
+        Array(Host.first(:name => host_names))
       end
     else
       [ ]

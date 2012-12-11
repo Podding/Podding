@@ -2,6 +2,9 @@
 
 class Show < Model
 
+  attribute :title
+  attribute :cover_url
+
   has_many :episodes, :Episode
 
   def initialize(options = {})
