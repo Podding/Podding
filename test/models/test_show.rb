@@ -56,7 +56,7 @@ class ShowModelTest < MiniTest::Unit::TestCase
 
   def test_episodes_relation
     show = Show.first(name: "show1")
-    show.episodes.each { |e| assert_equal show.meta_data, e.show.meta_data }
+    show.episodes.each { |e| assert_equal show, e.show }
   end
 
 end
