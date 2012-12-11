@@ -139,19 +139,6 @@ class Model
     self.class.name.downcase.to_sym
   end
 
-  # Dynamic meta data lookup
-  def method_missing(meth, *args, &block)
-    key = meth.to_s
-
-    return super if @meta_data.nil?
-
-    if @meta_data.has_key?(key)
-      @meta_data[key]
-    else
-      nil
-    end
-  end
-
   def respond_to?(meth)
     if @meta_data && @meta_data.has_key?(meth)
       true
