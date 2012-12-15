@@ -23,6 +23,6 @@ class IndexTest < MiniTest::Unit::TestCase
     get '/feed/show1/mp3/feed.xml'
     feed = Nokogiri::XML(last_response.body)
     assert_equal 2, feed.css("feed entry").count
-    asser_equal 2, feed.css("feed entry link[href $='mp3']").count
+    assert_equal 2, feed.css("feed entry link[href $='mp3']").count
   end
 end
