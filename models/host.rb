@@ -21,9 +21,13 @@ class Host < Model
   end
 
   def validate
-    assert_url :wishlist_url
+    # Required attributes
+    assert_present :full_name
     assert_url :image_url
-    assert_url :blog_url
+
+    # Optional attributes
+    assert_url :wishlist_url if self.wishlist_url
+    assert_url :blog_url if self.blog_url
     super
   end
 
