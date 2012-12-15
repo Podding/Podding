@@ -3,7 +3,8 @@
 class Podding < Sinatra::Base
 
   not_found do
-    slim :"404"
+    @page = Page.first(name: "404")
+    slim @page.template
   end
 
   # Debug route so we can test-render templates
