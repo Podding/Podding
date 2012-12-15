@@ -4,6 +4,8 @@ require 'date'
 
 class Episode < Model
 
+  attr_reader :teaser
+
   attribute :title
   attribute :status
   attribute :comments
@@ -16,6 +18,7 @@ class Episode < Model
 
   def initialize(options = {})
     super(options)
+    set_teaser
   end
 
   def date
@@ -38,6 +41,15 @@ class Episode < Model
       end
     else
       [ ]
+    end
+  end
+
+  private
+
+  def set_teaser
+    if match = @content.match(/^(!!!\s*\n(.*?)\n?)^(!!!\s*$\n?)(.*)/m)
+      @teaser = match[2]
+      @content = match[4]
     end
   end
 
