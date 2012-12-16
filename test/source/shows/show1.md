@@ -1,6 +1,7 @@
 ---
 name: "show1"
 title: "My super show 1"
+author: "Sir Show1"
 ---
 #Show 1
 

@@ -9,6 +9,7 @@ class Episode < Model
   attribute :title
   attribute :status
   attribute :comments
+  attribute :audioformats
 
   belongs_to :show, :Show
 
