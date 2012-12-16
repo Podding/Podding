@@ -14,12 +14,12 @@ class URLHelperTest < MiniTest::Unit::TestCase
 
   def test_episode_urls
     episode = Episode.first(title: "Trolololo")
-    assert_equal "/episodes/#{episode.name}", url_for(episode)
+    assert_equal "/shows/#{ episode.show.name }/#{ episode.name }", url_for(episode)
   end
 
   def test_show_urls
     show =  Show.first(name: "show1")
-    assert_equal "/shows/#{show.name}", url_for(show)
+    assert_equal "/shows/#{ show.name }", url_for(show)
   end
 
   def test_page_urls

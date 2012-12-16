@@ -7,7 +7,12 @@ module URLs
     namespace = model.class.name.downcase + "s"
     name = model.name
 
-    "/#{ namespace }/#{ name }"
+    if namespace == 'episodes'
+      show_name = model.show.name
+      "/shows/#{ show_name }/#{ name }"
+    else
+      "/#{ namespace }/#{ name }"
+    end
   end
 
 end
