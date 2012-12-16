@@ -4,6 +4,7 @@ class Show < Model
 
   attribute :title
   attribute :cover_url
+  attribute :author
 
   has_many :episodes, :Episode
 

@@ -15,6 +15,8 @@ class IndexTest < MiniTest::Unit::TestCase
   def test_valid_feed_all
     get '/feed/mp3/feed.xml'
     feed = Nokogiri::XML(last_response.body)
+      #  puts feed
+
     assert_equal 3, feed.css("feed entry").count
     assert_equal 3, feed.css("feed entry link[href $='mp3']").count
   end
