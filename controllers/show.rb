@@ -10,8 +10,8 @@ class Podding < Sinatra::Base
 
   get "/shows/:name" do |name|
     @page = Page.first(name: "shows")
-    @shows = Show.find(name: name)
-    slim @shows.first.template
+    @show = Show.first(name: name)
+    slim @show.template
   end
 
 end

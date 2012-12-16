@@ -1,6 +1,11 @@
-h1 Shows super custom template
+h1 Show single template
 
 == markdown @show.content
 
 - for key, value in @show.meta_data
   p #{ key }: #{ value }
+
+h2 Episodes:
+
+- for episode in @show.episodes
+  p episode.title

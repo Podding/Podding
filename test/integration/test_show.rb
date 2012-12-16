@@ -15,8 +15,10 @@ class ShowTest < MiniTest::Unit::TestCase
   end
 
   def test_show_template
-    get '/shows/show1'
+    get '/shows'
     assert_match %r{<h1>Shows default template</h1>}, last_response.body
+    get '/shows/show1'
+    assert_match %r{<h1>Show single template</h1>}, last_response.body
     get '/shows/show_2'
     assert_match %r{<h1>Shows super custom template</h1>}, last_response.body
   end

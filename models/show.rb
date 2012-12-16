@@ -12,10 +12,6 @@ class Show < Model
     super(options)
   end
 
-  def default_template
-    :shows
-  end
-
   def live_episodes
     Episode.find(show: @meta_data["name"], status: "live")
   end

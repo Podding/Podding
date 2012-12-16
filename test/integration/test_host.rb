@@ -14,6 +14,13 @@ class HostTest < MiniTest::Unit::TestCase
     assert last_response.ok?
   end
 
+  def test_host_template
+    get '/hosts'
+    assert_match %r{Multi host template}, last_response.body
+    get '/hosts/foo_bert'
+    assert_match %r{Single host template}, last_response.body
+  end
+
   def test_template_rendering
     validate_meta_data("/hosts/derp0", {
       name: "derp0",

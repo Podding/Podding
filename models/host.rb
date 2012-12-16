@@ -16,10 +16,6 @@ class Host < Model
     super(options)
   end
 
-  def default_template
-    :hosts
-  end
-
   def validate
     # Required attributes
     assert_present :full_name
