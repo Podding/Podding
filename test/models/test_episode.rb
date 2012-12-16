@@ -38,6 +38,12 @@ class EpisodeModelTest < MiniTest::Unit::TestCase
     assert @episodes.all? { |e| e.date.instance_of?(Date) }
   end
 
+  def test_episode_teaser
+    episode = Episode.first(name: "derp_derp_derp")
+    assert_equal "This is a **teaser**, yo!", episode.teaser
+    assert_equal "# Hello World\n\nThis is a test\n", episode.content
+  end
+
   # Test find()
 
   def test_find_by_show

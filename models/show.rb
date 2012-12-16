@@ -15,6 +15,10 @@ class Show < Model
     :shows
   end
 
+  def live_episodes
+    Episode.find(show: @meta_data["name"], status: "live")
+  end
+
   def published_episodes
     Episode.find(show: @meta_data["name"], status: "published")
   end

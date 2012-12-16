@@ -9,8 +9,10 @@ hosts: [derp0, foo_bert]
 opus: "derp.opus"
 aac: "derp.m4a"
 ogg: "derp.ogg"
-
 ---
+!!!
+This is a **teaser**, yo!
+!!!
 # Hello World
 
 This is a test
