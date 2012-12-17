@@ -51,3 +51,9 @@ To update changed content in the /source dir, you need to run a git pull. To aut
 # pull all submodules
 git submodule foreach git pull origin master
 ```
+
+### Change Submodule remote
+First update .gitmodules with new remote, then use the following command:
+```bash
+git submodule sync
+git submodule foreach git pull origin master
