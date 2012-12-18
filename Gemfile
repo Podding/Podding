@@ -19,3 +19,9 @@ gem 'therubyracer'
 # Data
 
 gem 'scrivener'
+
+# Debugging
+group :development, :test do
+  gem 'pry'
+  gem 'pry-nav'
+end
