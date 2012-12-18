@@ -25,14 +25,14 @@ class HostTest < MiniTest::Unit::TestCase
     validate_meta_data("/hosts/derp0", {
       name: "derp0",
       full_name: "Derp Inger",
-      twitter: "doh",
+      twitter_name: "doh",
       image_url: "http://placekitten.com/300/300"
     })
 
     validate_meta_data("/hosts/foo_bert", {
       name: "foo_bert",
       full_name: "Foo bert",
-      twitter: "durr",
+      twitter_name: "durr",
       image_url: "http://placedog.com/400/400",
       quip: "huh!"
     })

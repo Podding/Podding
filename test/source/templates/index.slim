@@ -1,9 +1,21 @@
-h1 #{ @episodes.count } Episodes
+h1 #{ @published_episodes.count } published episodes
 
-- for episode in @episodes do
+- for episode in @published_episodes do
 
   == markdown episode.content
 
   - for key, value in episode.meta_data
 
     p #{ key }: #{ value }
+
+h1 #{ @planned_episodes.count } planned episodes
+
+- for episode in @planned_episodes do
+
+  == markdown episode.content
+
+  - for key, value in episode.meta_data
+
+    p #{ key }: #{ value }
+
+h1 #{ @live_episodes.count } live episodes

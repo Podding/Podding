@@ -51,7 +51,7 @@ class ShowModelTest < MiniTest::Unit::TestCase
     show = Show.first(name: "show1")
     assert_equal 2, show.episodes.count
     show = Show.first(name: "show_2")
-    assert_equal 1, show.episodes.count
+    assert_equal 2, show.episodes.count
   end
 
   def test_episodes_relation

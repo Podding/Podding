@@ -38,8 +38,8 @@ class HostModelTest < MiniTest::Unit::TestCase
   end
 
   def test_find_host_by_twitter_name
-    assert_equal 1, Host.find(twitter: "doh").count
-    assert_equal 1, Host.find(twitter: "durr").count
+    assert_equal 1, Host.find(twitter_name: "doh").count
+    assert_equal 1, Host.find(twitter_name: "durr").count
   end
 
   def test_find_host_by_whishlist_url

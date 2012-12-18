@@ -7,11 +7,11 @@ class EpisodeModelTest < MiniTest::Unit::TestCase
   end
 
   def test_files_amount
-    assert_equal 5, Episode.scan_files.count
+    assert_equal 6, Episode.scan_files.count
   end
 
   def test_episode_amount
-    assert_equal 5, @episodes.count
+    assert_equal 6, @episodes.count
   end
 
   def test_episode_type
@@ -50,7 +50,7 @@ class EpisodeModelTest < MiniTest::Unit::TestCase
     assert_equal 1, Episode.find(show: "foo").count
     assert_equal 1, Episode.find(show: "bar").count
     assert_equal 2, Episode.find(show: "show1").count
-    assert_equal 1, Episode.find(show: "show_2").count
+    assert_equal 2, Episode.find(show: "show_2").count
   end
 
   def test_find_by_title
@@ -59,8 +59,9 @@ class EpisodeModelTest < MiniTest::Unit::TestCase
   end
 
   def test_find_by_status
-    assert_equal 2, Episode.find(status: "unpublished").count
     assert_equal 3, Episode.find(status: "published").count
+    assert_equal 2, Episode.find(status: "planned").count
+    assert_equal 1, Episode.find(status: "live").count
   end
 
   # Test relation to Host
