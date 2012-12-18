@@ -15,4 +15,12 @@ module URLs
     end
   end
 
+  def twitter_url(host)
+    "https://twitter.com/#{ host.twitter_name }"
+  end
+
+  def flattr_url(host)
+    "https://flattr.com/profile/#{ host.twitter_name }"
+  end
+
 end

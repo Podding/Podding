@@ -32,4 +32,14 @@ class URLHelperTest < MiniTest::Unit::TestCase
     assert_equal "/custommodels/#{ model.name }", url_for(model)
   end
 
+  def test_twitter_url
+    host = Host.first(name: "derp0")
+    assert_equal "https://twitter.com/#{ host.twitter_name }", twitter_url(host)
+  end
+
+  def test_flattr_url
+    host = Host.first(name: "derp0")
+    assert_equal "https://flattr.com/profile/#{ host.twitter_name }", flattr_url(host)
+  end
+
 end
