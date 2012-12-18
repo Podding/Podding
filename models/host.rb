@@ -3,8 +3,8 @@
 class Host < Model
 
   attribute :full_name
-  attribute :twitter
-  attribute :flattr
+  attribute :twitter_name
+  attribute :flattr_name
   attribute :wishlist_url
   attribute :image_url
   attribute :blog_url
