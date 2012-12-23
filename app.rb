@@ -58,6 +58,12 @@ class Podding < Sinatra::Base
     serve '/images', from: 'source/images'
   end
 
+  # Load all helpers
+
+  Helper.defined_helpers.each do |helper|
+    helpers helper
+  end
+
   run! if app_file == $0
 end
 

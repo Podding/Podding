@@ -5,7 +5,3 @@ Dir[File.dirname(__FILE__) + "/*.rb"].each do |helper|
     require_relative helper
   end
 end
-
-Helper.defined_helpers.each do |helper|
-  Podding.helpers helper
-end
