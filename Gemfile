@@ -24,4 +24,5 @@ gem 'scrivener'
 group :development, :test do
   gem 'pry'
   gem 'pry-nav'
+  gem 'mocha'
 end

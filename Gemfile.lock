@@ -12,7 +12,10 @@ GEM
     less (2.2.2)
       commonjs (~> 0.2.6)
     libv8 (3.3.10.4)
+    metaclass (0.0.1)
     method_source (0.8.1)
+    mocha (0.13.1)
+      metaclass (~> 0.0.1)
     nokogiri (1.5.5)
     pry (0.9.10)
       coderay (~> 1.0.5)
@@ -67,6 +70,7 @@ PLATFORMS
 DEPENDENCIES
   builder
   less
+  mocha
   pry
   pry-nav
   rack
