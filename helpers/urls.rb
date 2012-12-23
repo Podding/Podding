@@ -20,7 +20,7 @@ module URLs
   end
 
   def flattr_url(host)
-    "https://flattr.com/profile/#{ host.twitter_name }"
+    "https://flattr.com/profile/#{ host.flattr_name }"
   end
 
 end
