@@ -51,6 +51,8 @@ class Episode < Model
     if match = @content.match(/^(!!!\s*\n(.*?)\n?)^(!!!\s*$\n?)(.*)/m)
       @teaser = match[2]
       @content = match[4]
+    else
+      @teaser = ''
     end
   end
 
