@@ -13,15 +13,15 @@ class Show < Model
   end
 
   def live_episodes
-    Episode.find(show: @meta_data["name"], status: "live")
+    Episode.find(show: @data["name"], status: "live")
   end
 
   def published_episodes
-    Episode.find(show: @meta_data["name"], status: "published")
+    Episode.find(show: @data["name"], status: "published")
   end
 
   def planned_episodes
-    Episode.find(show: @meta_data["name"], status: "planned")
+    Episode.find(show: @data["name"], status: "planned")
   end
 
 end

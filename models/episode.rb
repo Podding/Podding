@@ -23,7 +23,7 @@ class Episode < Model
   end
 
   def date
-    Date.parse(@meta_data["date"])
+    Date.parse(@data["date"])
   end
 
   def validate
@@ -32,7 +32,7 @@ class Episode < Model
   end
 
   def hosts
-    if host_names = @meta_data["hosts"]
+    if host_names = @data["hosts"]
       if host_names.respond_to?(:map)
         host_names.map do |host|
           Host.first(:name => host)
