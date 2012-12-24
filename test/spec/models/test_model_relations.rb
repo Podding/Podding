@@ -52,7 +52,6 @@ EOF
       @reference_model.attributes.must_equal [ :test ]
     end
 
-
   end
 
   describe '#belongs_to' do
@@ -65,9 +64,7 @@ EOF
       @reference_model.other_reference_model.must_equal @other_reference_model
     end
 
-
   end
-
 
   describe '#has_many' do
 
