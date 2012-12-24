@@ -22,6 +22,16 @@ end
 
 describe Finders do
 
+  describe '#[]' do
+
+    it 'can find a single element by name' do
+      FinderModel['foo'].must_equal(
+        OpenStruct.new(data: { 'name' => 'foo', 'show' => 'oww', 'a' => 'x' })
+      )
+    end
+
+  end
+
   describe '#first' do
 
     it 'can find a single element by attribute' do
@@ -47,6 +57,14 @@ describe Finders do
   end
 
   describe '#find' do
+
+    it 'cannot find elements without any filters' do
+      lambda { FinderModel.find }.must_raise ArgumentError
+    end
+
+    it 'cannot find elements without a filters hash' do
+      lambda { FinderModel.find('trololo') }.must_raise ArgumentError
+    end
 
     it 'can find a single element by attribute' do
       FinderModel.find(name: 'foo').must_equal(
@@ -76,6 +94,14 @@ describe Finders do
 
   describe '#find_match' do
 
+    it 'cannot find elements without any filters' do
+      lambda { FinderModel.find_match }.must_raise ArgumentError
+    end
+
+    it 'cannot find elements without a filters hash' do
+      lambda { FinderModel.find_match('fufu') }.must_raise ArgumentError
+    end
+
     it 'can find elements by single match attribute' do
       result = FinderModel.find_match(arr: "baz")
       result.must_be_kind_of(Enumerable)
@@ -89,6 +115,13 @@ describe Finders do
       result.must_be_kind_of(Enumerable)
       result.size.must_equal 1
       result.must_include OpenStruct.new(data: { 'name' => 'WAT', 'arr' => %w{ jo no baz } })
+    end
+
+    it 'can find elements by regex' do
+      result = FinderModel.find_match(name: /(foo|bar)/)
+      result.size.must_equal 2
+      result.must_include OpenStruct.new(data: { 'name' => 'foo', 'show' => 'oww', 'a' => 'x' })
+      result.must_include OpenStruct.new(data: { 'name' => 'bar', 'show' => 'oww', 'a'=> 'c' })
     end
 
   end
