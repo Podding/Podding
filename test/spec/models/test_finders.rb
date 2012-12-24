@@ -14,7 +14,10 @@ class FinderModel
       OpenStruct.new(data: { 'name' => 'asdf', 'show' => 'hjl', 'a' => 'b' }),
 
       OpenStruct.new(data: { 'name' => 'huh', 'arr' => %w{ foo bar baz } }),
-      OpenStruct.new(data: { 'name' => 'WAT', 'arr' => %w{ jo no baz } })
+      OpenStruct.new(data: { 'name' => 'WAT', 'arr' => %w{ jo no baz } }),
+
+      OpenStruct.new(data: { 'name' => 'a', 'other_value' => 'ha' }),
+      OpenStruct.new(data: { 'name' => 'b', 'other_value' => 'ho' })
     ]
   end
 end
@@ -58,6 +61,10 @@ describe Finders do
 
   describe '#find' do
 
+    it 'retuns an empty array when filters do not match' do
+      FinderModel.find(non_existing_attribute: 'non_existing_value').must_be_empty
+    end
+
     it 'cannot find elements without any filters' do
       lambda { FinderModel.find }.must_raise ArgumentError
     end
@@ -89,10 +96,18 @@ describe Finders do
       result.must_include OpenStruct.new(data: { 'name' => 'lol', 'show' => 'oww', 'a'=> 'c' })
     end
 
+    it 'can find elements by attribute existance' do
+      result = FinderModel.find(other_value: :exists)
+      result.size.must_equal 2
+    end
+
   end
 
-
   describe '#find_match' do
+
+    it 'retuns an empty array when filters do not match' do
+      FinderModel.find_match(non_existing_attribute: 'non_existing_value').must_be_empty
+    end
 
     it 'cannot find elements without any filters' do
       lambda { FinderModel.find_match }.must_raise ArgumentError
