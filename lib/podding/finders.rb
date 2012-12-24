@@ -13,7 +13,11 @@ module Finders
 
     all.select do |model|
       filters.all? do |param, value|
-        model.data[param.to_s] == value
+        if value == :exists
+          model.data.has_key?(param.to_s)
+        else
+          model.data[param.to_s] == value
+        end
       end
     end
   end
