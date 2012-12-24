@@ -12,7 +12,7 @@ class Host < Model
 
   has_many :episodes, :Episode, :hosts
 
-  def initialize(options = {})
+  def initialize(options)
     super(options)
   end
 

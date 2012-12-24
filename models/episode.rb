@@ -17,7 +17,7 @@ class Episode < Model
     :date
   end
 
-  def initialize(options = {})
+  def initialize(options)
     super(options)
     set_teaser
   end

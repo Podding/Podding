@@ -8,7 +8,7 @@ class Show < Model
 
   has_many :episodes, :Episode
 
-  def initialize(options = {})
+  def initialize(options)
     super(options)
   end
 
