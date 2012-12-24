@@ -3,8 +3,8 @@
 ENV['RACK_ENV'] = 'test'
 
 require 'minitest/autorun'
-require 'minitest/benchmark'
 require 'rack/test'
+require 'nokogiri'
 
 require_relative '../../app'
 
@@ -14,8 +14,8 @@ def app
   Podding
 end
 
-Model.base_path = File.dirname(__FILE__) + '/../source'
-Podding.set :views, File.dirname(__FILE__) + '/../source/templates'
+Model.base_path = File.dirname(__FILE__) + '/source'
+Podding.set :views, File.dirname(__FILE__) + '/source/templates'
 
 def validate_meta_data(url, options)
   get url

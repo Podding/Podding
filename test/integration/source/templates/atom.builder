@@ -1,1 +1,1 @@
-../../../source/templates/atom.builder
+../../../../source/templates/atom.builder
