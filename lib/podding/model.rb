@@ -85,9 +85,9 @@ class Model
     begin
       if match = raw_content.match(/^(---\s*\n(.*?)\n?)^(---\s*$\n?)(.*)/m)
         data = YAML.load(match[2])
-        content = match[4]
+        content = match[4].strip
       else
-        content = raw_content
+        content = raw_content.strip
       end
     rescue Psych::SyntaxError => e
       raise "YAML error while reading #{ path }: #{ e.message }"
