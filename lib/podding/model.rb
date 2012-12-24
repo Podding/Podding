@@ -6,32 +6,23 @@ class Model
   extend Finders
   include Scrivener::Validations
 
-  # Make self.base_path writable
   class << self
-    attr_accessor :base_path
+    attr_accessor :storage_engine
   end
 
-  def self.all
-    all_files = scan_files
-
-    all_files.map do |path|
-      raw_content = File.read(path)
-      self.new(path: path, raw_content: raw_content)
-    end.sort_by &default_sort_by
-  end
-
-  def self.path
-    name = to_reference + "s"
-    "#{ Model.base_path }/#{ name }"
-  end
-
-  def self.scan_files
-    files = "#{ path }/**/*.{markdown,md}"
-    Dir[files]
+  def self.storage
+    ref = to_reference + 's'
+    Model.storage_engine.new(ref)
   end
 
   def self.default_sort_by
     :name
+  end
+
+  def self.all
+    storage.all.map do |raw_content|
+      self.new(raw_content: raw_content)
+    end
   end
 
   # Manage relations between models
@@ -77,7 +68,6 @@ class Model
 
   def initialize(opts)
     raise ArgumentError, 'No raw_content given' if opts[:raw_content].nil?
-
 
     split_content = split_content_and_meta(opts[:path], opts[:raw_content])
     @content = split_content[:content]
