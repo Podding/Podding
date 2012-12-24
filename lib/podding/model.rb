@@ -40,6 +40,12 @@ class Model
     define_method(name) do
       @data[name.to_s]
     end
+
+    attributes << name
+  end
+
+  def self.attributes
+    @attrs ||= [ ]
   end
 
   def self.belongs_to(name, model)
@@ -76,6 +82,10 @@ class Model
     split_content = split_content_and_meta(opts[:path], opts[:raw_content])
     @content = split_content[:content]
     @data = split_content[:data]
+  end
+
+  def attributes
+    self.class.attributes
   end
 
   def split_content_and_meta(path, raw_content)
