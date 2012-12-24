@@ -19,11 +19,6 @@ This is the content
     @episode = Episode.new(raw_content: content)
   end
 
-  it 'has a correct date' do
-    @episode.date.must_be_instance_of Date
-    @episode.date.must_equal Date.new(2012, 12, 24)
-  end
-
   it 'sets the content' do
     @episode.content.must_equal 'This is the content'
   end
@@ -34,6 +29,25 @@ This is the content
 
   it 'has an empty teaser when not available' do
     Episode.new(raw_content: 'content').teaser.must_equal ''
+  end
+
+  describe '#date' do
+
+    it 'can parse the set date' do
+      @episode.date.must_be_instance_of Date
+      @episode.date.must_equal Date.new(2012, 12, 24)
+    end
+
+  end
+
+  describe '#hosts' do
+
+    it 'returns an empty array when no hosts are available' do
+      hosts = @episode.hosts
+      hosts.must_be_kind_of(Enumerable)
+      hosts.must_be_empty
+    end
+
   end
 
 end
