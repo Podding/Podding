@@ -44,7 +44,7 @@ asdf: hjkl
 THIS IS SPARTA!
     EOF
 
-    Model.new(raw_content: content).content.must_equal "THIS IS SPARTA!\n"
+    Model.new(raw_content: content).content.must_equal "THIS IS SPARTA!"
   end
 
   it 'can be created without a YAML header and content' do
@@ -65,6 +65,18 @@ name: dawg
 Content
     EOF
     Model.new(raw_content: content).valid?.must_equal true
+  end
+
+  it 'should serialize a valid representation of itself' do
+    content = <<-EOF
+---
+name: serialize_me
+---
+Content
+    EOF
+    model = Model.new(raw_content: content)
+    new_model = Model.new(raw_content: model.serialize)
+    new_model.must_equal model
   end
 
 end

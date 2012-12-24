@@ -25,7 +25,7 @@ This is the content
   end
 
   it 'sets the content' do
-    @episode.content.must_equal "This is the content\n"
+    @episode.content.must_equal 'This is the content'
   end
 
   it 'sets the teaser' do

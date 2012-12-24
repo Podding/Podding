@@ -6,6 +6,9 @@ require 'minitest/autorun'
 require 'rack/test'
 require 'nokogiri'
 
+require 'pry'
+require 'pry-nav'
+
 require_relative '../../app'
 
 include Rack::Test::Methods
@@ -14,7 +17,8 @@ def app
   Podding
 end
 
-Model.base_path = File.dirname(__FILE__) + '/source'
+FileStorage.base_path = File.dirname(__FILE__) + '/source'
+Model.storage_engine = FileStorage
 Podding.set :views, File.dirname(__FILE__) + '/source/templates'
 
 def validate_meta_data(url, options)
