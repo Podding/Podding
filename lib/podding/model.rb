@@ -10,6 +10,14 @@ class Model
     attr_accessor :storage_engine
   end
 
+  def self.defined_models
+    @all_models ||= [ ]
+  end
+
+  def self.inherited(subclass)
+    defined_models << subclass
+  end
+
   def self.storage
     ref = to_reference + 's'
     Model.storage_engine.new(ref)
