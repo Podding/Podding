@@ -119,4 +119,17 @@ class Model
     meta_equals && content_equals
   end
 
+  def save
+    self.class.storage.save(self.serialize)
+  end
+
+  def serialize
+    <<-EOF
+#{ self.data.to_yaml }
+---
+#{ self.content }
+    EOF
+  end
+
+
 end
