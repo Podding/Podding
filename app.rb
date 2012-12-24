@@ -30,7 +30,8 @@ class Podding < Sinatra::Base
   set :public_folder, source_dir + '/assets'
   set :views, source_dir + '/templates'
 
-  Model.base_path = source_dir
+  FileStorage.base_path = source_dir
+  Model.storage_engine = FileStorage
 
   configure :production do
     # ...
