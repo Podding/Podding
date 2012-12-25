@@ -23,7 +23,7 @@ class Episode < Model
   end
 
   def date
-    Date.parse(@data["date"])
+    Date.parse(@data['date'])
   end
 
   def validate
@@ -32,14 +32,18 @@ class Episode < Model
   end
 
   def hosts
-    if host_names = @data["hosts"]
+    if host_names = @data['hosts']
       if host_names.respond_to?(:map)
-        host_names.map do |host|
-          Host.first(:name => host)
+        hosts = host_names.map do |host|
+          Host.first(name: host)
         end
+        # Filter nil hosts
+        hosts.select { |h| !h.nil? }
       else
-        Array(Host.first(:name => host_names))
+        Array(Host.first(name: host_names))
       end
+    elsif host_name = @data['host']
+      Array(Host.first(name: host_name))
     else
       [ ]
     end
