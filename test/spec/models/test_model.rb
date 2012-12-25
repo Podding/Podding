@@ -8,11 +8,18 @@ describe Model do
     lambda { Model.new({ }) }.must_raise(ArgumentError)
   end
 
-  it 'can be created with specific content' do
+  it 'can be created with empty content' do
     model = Model.new(raw_content: '')
     model.must_be_instance_of Model
     model.content.must_equal ''
     model.data.must_equal({ })
+  end
+
+  it 'can be created with data and empty content' do
+    model = Model.new(raw_content: "---\n foo: bar \n---")
+    model.must_be_instance_of Model
+    model.content.must_equal ''
+    model.data.must_equal({ 'foo' => 'bar' })
   end
 
   it "can't be created with a broken YAML header" do
