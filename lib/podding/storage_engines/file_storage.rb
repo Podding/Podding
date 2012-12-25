@@ -13,8 +13,8 @@ class FileStorage
   def all
     all_files = scan_files
 
-    all_files.map do |path|
-      File.read(path)
+    all_files.each_with_object({ }) do |path, hsh|
+      hsh[path] = File.read(path)
     end
   end
 

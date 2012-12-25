@@ -28,8 +28,8 @@ class Model
   end
 
   def self.all
-    storage.all.map do |raw_content|
-      self.new(raw_content: raw_content)
+    storage.all.map do |path, raw_content|
+      self.new(raw_content: raw_content, path: path)
     end
   end
 
@@ -70,14 +70,15 @@ class Model
     self.name.downcase
   end
 
-  attr_reader :content, :data
+  attr_reader :content, :data, :path
 
   attribute :name
 
-  def initialize(opts)
-    raise ArgumentError, 'No raw_content given' if opts[:raw_content].nil?
+  def initialize(options)
+    raise ArgumentError, 'No raw_content given' if options[:raw_content].nil?
 
-    split_content = split_content_and_meta(opts[:path], opts[:raw_content])
+    @path = options[:path]
+    split_content = split_content_and_meta(@path, options[:raw_content])
     @content = split_content[:content]
     @data = split_content[:data]
   end
@@ -128,7 +129,7 @@ class Model
   end
 
   def save
-    self.class.storage.save(self.serialize)
+    self.class.storage.save(self.name, self.serialize)
   end
 
   def serialize

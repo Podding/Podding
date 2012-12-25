@@ -10,8 +10,8 @@ class MemoryStorage
     storage
   end
 
-  def save(model_data)
-    storage << model_data unless storage.include?(model_data)
+  def save(name, model_data)
+    storage[name] = model_data unless storage.has_key?(name)
   end
 
   private
@@ -21,7 +21,7 @@ class MemoryStorage
   end
 
   def storage
-    self.class.storage[@namespace] ||= [ ]
+    self.class.storage[@namespace] ||= { }
   end
 
 end
