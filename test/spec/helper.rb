@@ -8,7 +8,7 @@ require 'pry'
 require 'pry-nav'
 
 require_relative '../../lib/podding'
-require_relative '../../lib/podding/memory_storage'
+require_relative '../../lib/podding/storage_engines/memory_storage'
 require_relative '../../models/init'
 require_relative '../../helpers/init'
 
