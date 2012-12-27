@@ -49,6 +49,33 @@ class Episode < Model
     end
   end
 
+  def auphonic_metadata(username="", password="")
+    meta = {}
+    
+    if auphonic = data['auphonic']
+      auphonic.each do |audio_format, auphonic_uuid|
+        uri = URI.parse("https://auphonic.com/api/production/#{auphonic_uuid}.json")
+
+        @http=Net::HTTP.new(uri.host, 443)
+        @http.use_ssl = true
+
+        @http.start do |http|
+          req = Net::HTTP::Get.new(uri.path)
+          req.basic_auth username, password
+          response = http.request(req)
+          parsed = JSON.parse(response.body)
+          cur_metadata = {
+            length:  parsed["data"]["length_timestring"]
+          }
+
+          meta[audio_format.to_sym] = cur_metadata
+        end
+      end
+    end
+
+    meta
+  end
+
   private
 
   def set_teaser

@@ -14,6 +14,8 @@ require 'slim'
 require 'less'
 require 'redcarpet'
 require 'net/http'
+require 'net/https'
+require 'json'
 
 require_relative 'lib/podding'
 

@@ -9,6 +9,7 @@ gem 'thin'
 gem 'shotgun'
 gem 'builder'
 gem 'w3c_validators'
+gem 'json'
 
 # Templating
 gem 'redcarpet'

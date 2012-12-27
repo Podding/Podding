@@ -69,6 +69,7 @@ PLATFORMS
 
 DEPENDENCIES
   builder
+  json
   less
   mocha
   pry
