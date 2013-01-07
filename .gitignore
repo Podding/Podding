@@ -21,3 +21,5 @@ doc/
 # IntelliJ IDEA
 .idea/*
 *.iml
+
+/dump.rdb

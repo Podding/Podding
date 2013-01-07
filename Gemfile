@@ -18,8 +18,14 @@ gem 'less'
 gem 'therubyracer'
 
 # Data
-
 gem 'scrivener'
+
+# Queue
+gem 'sidekiq'
+gem 'redis'
+
+# Mail
+gem 'pony'
 
 # Debugging
 group :development, :test do

@@ -1,9 +1,6 @@
 # encoding: utf-8
 
 class Podding < Sinatra::Base
-  get "/git" do
-
-  end
 
   post "/git" do
     push = JSON.parse(params[:payload])
