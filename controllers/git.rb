@@ -2,10 +2,10 @@
 
 class Podding < Sinatra::Base
 
-  post "/git" do
-    push = JSON.parse(params[:payload])
+  get "/git" do
+    #push = JSON.parse(params[:payload])
     
-    url = URI.parse("http://#{settings.varnish_host}:#{settings.varnish_port} /")
+    url = URI.parse("http://#{settings.varnish_host}:#{settings.varnish_port}/")
     req = Net::HTTP::VarnishBan.new(url.path)
 
     res = Net::HTTP.new(url.host, url.port).start do |http|
