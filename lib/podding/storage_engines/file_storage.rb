@@ -25,11 +25,11 @@ class FileStorage
   private
 
   def path
-    "#{ self.class.base_path }/#{ @namespace }"
+    File.join(self.class.base_path, @namespace)
   end
 
   def scan_files
-    files = "#{ path }/**/*.{markdown,md}"
+    files = File.join(path, "**", "*.{markdown,md}")
     Dir[files]
   end
 
