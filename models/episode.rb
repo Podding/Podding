@@ -7,7 +7,6 @@ class Episode < Model
   attr_reader :teaser
 
   attribute :title
-  attribute :status
   attribute :comments
   attribute :audioformats
 
@@ -28,7 +27,16 @@ class Episode < Model
 
   def validate
     assert_present :date
-    assert_present :status
+  end
+
+  def status
+    if date < Date.today
+      "published"
+    elsif date == Date.today
+      "live"
+    else
+      "planned"
+    end
   end
 
   def hosts
