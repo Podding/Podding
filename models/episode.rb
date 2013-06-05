@@ -25,18 +25,31 @@ class Episode < Model
     Date.parse(data['date'])
   end
 
+  def live_date
+    Date.parse(data['live_date']) if data['live_date']
+  end
+
   def validate
     assert_present :date
+
+    # Optional
+    assert_present :live_date if self.live_date
   end
 
   def status
-    if date < Date.today
-      "published"
-    elsif date == Date.today
+    if live_date and live_date == Date.today
       "live"
-    else
+    elsif live_date and live_date > Date.today
       "planned"
+    else
+      if date <= Date.today
+        "published"
+      else
+        "planned"
+      end
     end
+
+
   end
 
   def hosts
