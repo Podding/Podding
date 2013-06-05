@@ -7,8 +7,8 @@ class Podding < Sinatra::Base
     @live_episodes = []
     @published_episodes = []
     @planned_episodes = []
-    for episode in episodes do |episode|
-      if episde.status == "published"
+    for episode in episodes
+      if episode.status == "published"
         @published_episodes << episode
       elsif episode.status == "live"
         @live_episodes << episode
