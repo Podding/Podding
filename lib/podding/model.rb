@@ -3,7 +3,6 @@
 require 'scrivener'
 
 class Model
-  extend Finders
   include Scrivener::Validations
 
   class << self
