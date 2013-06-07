@@ -7,7 +7,7 @@ require 'rack/test'
 require 'nokogiri'
 
 require 'pry'
-require 'pry-nav'
+require 'pry-debugger'
 
 require_relative '../../app'
 

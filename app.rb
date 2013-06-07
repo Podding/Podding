@@ -42,7 +42,7 @@ class Podding < Sinatra::Base
 
   configure :development do
     require 'pry'
-    require 'pry-nav'
+    require 'pry-debugger'
   end
 
   helpers do
