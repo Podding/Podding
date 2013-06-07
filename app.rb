@@ -68,13 +68,6 @@ class Podding < Sinatra::Base
     helpers helper
   end
 
-  # Index all models
-
-  searchIndex = Hash.new
-  Model.defined_models.each do |model|
-    model.index_all searchIndex
-  end
-
   run! if app_file == $0
 end
 

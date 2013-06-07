@@ -23,17 +23,6 @@ class Model
     Model.storage_engine.new(ref)
   end
 
-  def self.index_all(searchIndex)
-    if !Model.storage_engine.nil?
-      if searchIndex[self.name].nil?
-        searchIndex[self.name] = Array.new
-      end
-      self.all.each do |elem|
-        searchIndex[self.name].push [elem.data, elem.path]
-      end
-    end
-  end
-
   def self.default_sort_by
     :name
   end
