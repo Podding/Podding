@@ -4,7 +4,7 @@ module URLs
   include Helper
 
   def url_for(model)
-    namespace = model.class.name.downcase + "s"
+    namespace = Utils.pluralize(model.class.name.downcase)
     name = model.name
 
     if namespace == 'episodes'
