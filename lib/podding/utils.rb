@@ -9,4 +9,12 @@ module Utils
     end
   end
 
+  def self.pluralize(str)
+    if str.end_with?('y')
+      str.gsub(/y$/, 'ies')
+    else
+      str + 's'
+    end
+  end
+
 end
