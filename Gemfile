@@ -28,7 +28,7 @@ gem 'pony'
 # Debugging
 group :development, :test do
   gem 'pry'
-  gem 'pry-nav'
+  gem 'pry-debugger'
   gem 'mocha'
   gem 'shotgun'
   gem 'w3c_validators'
