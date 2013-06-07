@@ -19,13 +19,6 @@ This is the content
     @episode = Episode.new(raw_content: content)
   end
 
-  it 'can be created with empty content' do
-    episode = Episode.new(raw_content: '')
-    episode.content.must_be_empty
-    episode.teaser.must_be_empty
-    episode.hosts.must_be_empty
-  end
-
   it 'sets the content' do
     @episode.content.must_equal 'This is the content'
   end
@@ -35,7 +28,8 @@ This is the content
   end
 
   it 'has an empty teaser when not available' do
-    Episode.new(raw_content: 'content').teaser.must_equal ''
+    content = generate_document({ foo: 'bar' })
+    Episode.new(raw_content: content).teaser.must_equal('')
   end
 
   describe '#date' do
@@ -94,7 +88,8 @@ This is the content
     end
 
     it 'only references valid hosts' do
-      hosts = Episode.new(raw_content: "---\n hosts: [ asdf, hjkl, non_existing ] \n---").hosts
+      episode = Episode.new(raw_content: "---\n hosts: [ asdf, hjkl, non_existing ] \n---")
+      hosts = episode.hosts
       hosts.must_be_kind_of(Enumerable)
       hosts.size.must_equal 2
     end
