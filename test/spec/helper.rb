@@ -4,6 +4,8 @@ require 'minitest/spec'
 require 'minitest/autorun'
 require 'mocha/setup'
 
+require 'ostruct'
+
 require 'pry'
 require 'pry-nav'
 
