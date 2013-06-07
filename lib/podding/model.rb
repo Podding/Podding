@@ -19,7 +19,7 @@ class Model
   end
 
   def self.storage
-    ref = to_reference + 's'
+    ref = Utils.pluralize(to_reference)
     Model.storage_engine.new(ref)
   end
 
@@ -27,10 +27,30 @@ class Model
     :name
   end
 
+  def [](name)
+    all.first(name: name)
+  end
+
+  # convenience wrappers around all()
+
+  def self.first(filters = { })
+    all.first(filters)
+  end
+
+  def self.find(filters)
+    all.find(filters)
+  end
+
+  def self.find_match(filters)
+    all.find_match(filters)
+  end
+
   def self.all
-    storage.all.map do |path, raw_content|
+    results = storage.all.map do |path, raw_content|
       self.new(raw_content: raw_content, path: path)
     end
+
+    ResultSet.new(results)
   end
 
   # Manage relations between models
@@ -56,7 +76,7 @@ class Model
   end
 
   def self.has_many(name, model, reference = to_reference)
-    define_method name do
+    define_method(name) do
       model = Utils.class_lookup(self.class, model)
       if reference.to_s.end_with?("s")
         model.find_match(:"#{ reference }" => self.name)
@@ -96,7 +116,7 @@ class Model
         data = YAML.load(match[2])
         content = match[4].strip
       else
-        content = raw_content.strip
+        raise "No metadata header available in file: #{ path }! Content:\n#{ raw_content }"
       end
     rescue Psych::SyntaxError => e
       raise "YAML error while reading #{ path }: #{ e.message }"
@@ -132,13 +152,8 @@ class Model
     self.class.storage.save(self.name, self.serialize)
   end
 
+
   def serialize
-    <<-EOF
-#{ self.data.to_yaml }
----
-#{ self.content }
-    EOF
+    "#{ self.data.to_yaml }\n---\n#{ self.content }"
   end
-
-
 end
