@@ -14,18 +14,19 @@ describe URLs do
     Content.expects(:name).returns("Content")
     content.expects(:name).returns('my_content')
 
-    url_for(content).must_equal '/contents/my_content'
+    url_for(content).must_equal('/contents/my_content')
   end
 
   it 'should generate correct episode URLs' do
-    episode = Episode.new(raw_content: '')
-    show = Show.new(raw_content: '')
-
+    episode = mock
+    episode.expects(:class).returns(Episode)
     episode.expects(:name).returns('my_episode')
+
+    show = mock
     show.expects(:name).returns('my_show')
     episode.expects(:show).returns(show)
 
-    url_for(episode).must_equal '/shows/my_show/my_episode'
+    url_for(episode).must_equal('/shows/my_show/my_episode')
   end
 
   it 'should generate correct twitter URLs' do
