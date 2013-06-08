@@ -8,10 +8,6 @@ class Show < Model
 
   has_many :episodes, :Episode
 
-  def initialize(options)
-    super(options)
-  end
-
   def live_episodes
     Episode.find(show: @data["name"], status: "live")
   end

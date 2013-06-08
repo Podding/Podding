@@ -7,8 +7,4 @@ class Page < Model
   attribute :label
   attribute :quip
 
-  def initialize(options)
-    super(options)
-  end
-
 end

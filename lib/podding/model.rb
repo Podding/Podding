@@ -45,8 +45,9 @@ class Model
   end
 
   def self.all
-    results = storage.all.map do |path, raw_content|
-      self.new(raw_content: raw_content, path: path)
+    results = storage.all.map do |path, raw_document|
+      document = Document.new(raw_document)
+      self.new(document, { path: path })
     end
 
     ResultSet.new(results)
@@ -89,39 +90,19 @@ class Model
     self.name.downcase
   end
 
-  attr_reader :content, :data, :path
+  attr_reader :document, :content, :data
 
   attribute :name
 
-  def initialize(options)
-    raise ArgumentError, 'No raw_content given' if options[:raw_content].nil?
-
+  def initialize(document, options = {})
     @path = options[:path]
-    split_content = split_content_and_meta(@path, options[:raw_content])
-    @content = split_content[:content]
-    @data = split_content[:data]
+    @document = document
+    @content = @document.content
+    @data = @document.data
   end
 
   def attributes
     self.class.attributes
-  end
-
-  def split_content_and_meta(path, raw_content)
-    content = ''
-    data = { }
-
-    begin
-      if match = raw_content.match(/^(---\s*\n(.*?)\n?)^(---\s*$\n?)(.*)/m)
-        data = YAML.load(match[2])
-        content = match[4].strip
-      else
-        raise "No metadata header available in file: #{ path }! Content:\n#{ raw_content }"
-      end
-    rescue Psych::SyntaxError => e
-      raise "YAML error while reading #{ path }: #{ e.message }"
-    end
-
-    { content: content, data: data }
   end
 
   def validate
@@ -141,18 +122,11 @@ class Model
   end
 
   def ==(other_model)
-    meta_equals = self.data == other_model.data
-    content_equals = self.content == other_model.content
-
-    meta_equals && content_equals
+    self.document == other_model.document
   end
 
   def save
-    self.class.storage.save(self.name, self.serialize)
+    self.class.storage.save(self.name, @document.serialize)
   end
 
-
-  def serialize
-    "#{ self.data.to_yaml }\n---\n#{ self.content }"
-  end
 end

@@ -12,10 +12,6 @@ class Host < Model
 
   has_many :episodes, :Episode, :hosts
 
-  def initialize(options)
-    super(options)
-  end
-
   def validate
     # Required attributes
     assert_present :full_name
