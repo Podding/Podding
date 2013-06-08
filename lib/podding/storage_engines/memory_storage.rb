@@ -12,6 +12,8 @@ class MemoryStorage
 
   def save(name, model_data)
     storage[name] = model_data unless storage.has_key?(name)
+
+    true
   end
 
   private
