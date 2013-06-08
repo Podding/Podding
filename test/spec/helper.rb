@@ -24,3 +24,12 @@ def generate_document(header, content = '')
 #{ content }
 EOF
 end
+
+def mock_document(attributes)
+  mock_content = mock()
+  attributes.each do |attr, value|
+    mock_content.expects(attr).returns(value)
+  end
+
+  mock_content
+end
