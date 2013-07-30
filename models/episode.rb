@@ -9,6 +9,7 @@ class Episode < Model
   attribute :title
   attribute :comments
   attribute :audioformats
+  attribute :number
 
   belongs_to :show, :Show
 
@@ -67,6 +68,10 @@ class Episode < Model
     else
       [ ]
     end
+  end
+
+  def number
+    name.split("-",2)[1]
   end
 
   private
