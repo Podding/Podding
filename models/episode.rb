@@ -55,6 +55,14 @@ class Episode < Model
     end
   end
 
+  def title
+    if data['title'] != nil
+      data['title']
+    else
+      "Untitled"
+    end
+  end
+
   def hosts
     if host_names = data['hosts']
       if host_names.respond_to?(:map)
