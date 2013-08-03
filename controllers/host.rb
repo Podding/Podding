@@ -9,8 +9,8 @@ class Podding < Sinatra::Base
   end
 
   get "/hosts/:name" do |name|
-    @page = Page.first(name: "hosts")
     @host = Host.first(name: name)
+    @pagetitle = @host.full_name
     slim @host.template
   end
 
