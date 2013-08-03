@@ -53,8 +53,6 @@ class Episode < Model
         end
       end
     end
-    
-
   end
 
   def hosts
