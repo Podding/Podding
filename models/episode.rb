@@ -38,17 +38,22 @@ class Episode < Model
   end
 
   def status
-    if live_date and live_date == Date.today
-      "live"
-    elsif live_date and live_date > Date.today
-      "planned"
+    if data['status'] != nil # explicitly declared status takes precendence over date-based guesswork
+      data['status']
     else
-      if date <= Date.today
-        "published"
-      else
+      if live_date and live_date == Date.today
+      "live"
+      elsif live_date and live_date > Date.today
         "planned"
+      else
+        if date <= Date.today
+          "published"
+        else
+          "planned"
+        end
       end
     end
+    
 
   end
 
