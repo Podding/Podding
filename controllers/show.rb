@@ -9,15 +9,15 @@ class Podding < Sinatra::Base
   end
 
   get "/shows/:name" do |name|
-    @page = Page.first(name: "shows")
     @show = Show.first(name: name)
+    @pagetitle = @show.title
     slim @show.template
   end
 
   get "/shows/:name/:episode_name" do |name, episode_name|
-    @page = Page.first(name: "shows")
     @episode = Episode.first(name: episode_name)
-    slim :episode
+    @pagetitle = @episode.title
+    slim @episode.template
   end
 
 end
