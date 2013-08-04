@@ -38,7 +38,7 @@ class Episode < Model
   end
 
   def status
-    if data['status'] != nil # explicitly declared status takes precendence over date-based guesswork
+    if data['status'] # explicitly declared status takes precendence over date-based guesswork
       data['status']
     else
       if live_date and live_date == Date.today
