@@ -18,7 +18,7 @@ class Podding < Sinatra::Base
 
     @paginated = true
     @page_max = (( @published_episodes.length / settings.episodes_per_page ).to_f).ceil
-    @published_episodes = @published_episodes.slice!(@page_num,settings.episodes_per_page)
+    @published_episodes = @published_episodes.slice!((@page_num-1)*settings.episodes_per_page,settings.episodes_per_page)
 
     pass if @page_num > @page_max
 
