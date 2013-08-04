@@ -56,7 +56,7 @@ class Episode < Model
   end
 
   def title
-    if data['title'] != nil
+    if data['title']
       data['title']
     else
       "Untitled"
