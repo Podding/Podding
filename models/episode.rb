@@ -81,6 +81,41 @@ class Episode < Model
     end
   end
 
+  def audioformats # returns a hash: name: url
+    if audioformats_data = data['audioformats'] # if declared in episode, use that
+       if audioformats_data.is_a?(Hash) # if a hash is passed, assume that it contains full urls
+         return audioformats_data
+       elsif audioformats_data.is_a?(Array) # if an array is passed, look in audioformats for matching ones and build the hash
+          
+          audioformats_hash = Hash.new # this will contain name: url
+          
+          # now look up the corresponding Audioformat to each mentioned in the array and put them in a new array
+          audioformats_array = Array.new
+          audioformats_data.each do |format|
+            audioformats_array << Audioformat.first(name: format)
+          end
+
+          # now use these to build the return hash
+          audioformats_array.each do | audioformat |
+            audioformats_hash[audioformat.name] = "/audio/" + self.name + audioformat.file_extension # to do: use settings for base bath
+          end
+          return audioformats_hash
+       end
+
+    elsif audioformats_array = self.show.audioformats # default to the ones declared in the episode
+      audioformats_hash = Hash.new
+      audioformats_array.each do | audioformat |
+        audioformats_hash[audioformat.name] = "/audio/" + self.name + audioformat.file_extension # to do: use settings for base bath
+      end
+      return audioformats_hash
+
+      # to do: use defaults from settings
+    
+    else # so, no audio for this episode... ;)
+      {}
+    end
+  end # audioformats
+
   def number
     name.split("-",2)[1]
   end
