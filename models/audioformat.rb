@@ -20,8 +20,8 @@ class Audioformat < Model
     end
   end # suffix
 
-  def file_extension
+  def file_extension # this is what is used to build an audio file url
     self.suffix + self.extension
-  end
+  end # file_extension
 
 end # audioformat

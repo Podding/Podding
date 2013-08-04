@@ -102,7 +102,7 @@ class Episode < Model
           return audioformats_hash
        end
 
-    elsif audioformats_array = self.show.audioformats # default to the ones declared in the episode
+    elsif audioformats_array = self.show.audioformats # default to the ones declared in the show
       audioformats_hash = Hash.new
       audioformats_array.each do | audioformat |
         audioformats_hash[audioformat.name] = "/audio/" + self.name + audioformat.file_extension # to do: use settings for base bath
