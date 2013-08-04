@@ -32,6 +32,7 @@ class Episode < Model
 
   def validate
     assert_present :date
+    assert_present :audioformats
 
     # Optional
     assert_present :live_date if self.live_date
