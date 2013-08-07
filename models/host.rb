@@ -10,7 +10,7 @@ class Host < Model
   attribute :blog_url
   attribute :quip
 
-  has_many :Episode, :epispdes, :hosts
+  has_many :Episode, :episodes, :hosts
 
   def validate
     # Required attributes
