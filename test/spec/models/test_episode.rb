@@ -4,12 +4,6 @@ require_relative '../helper'
 
 describe Episode do
 
-  it 'can set the content' do
-    document = mock_document(content: 'Some content', data: { 'name' => 'epi' })
-    episode = Episode.new(document)
-    episode.content.must_equal('Some content')
-  end
-
   it 'can set the teaser' do
     content = "!!!\nThis is the teaser\n!!!\nThis is the content"
 

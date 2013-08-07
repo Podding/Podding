@@ -3,11 +3,48 @@
 require_relative '../helper'
 
 class TestModel < Model
+  attribute :test
+end
+
+class OtherModel < TestModel
+  attribute :asdf
 end
 
 describe Model do
 
-  # todo test metaprogramming
+  describe 'attribute' do
+
+    let(:test_model) do
+      TestModel.new(mock_document(
+        content: 'foo',
+        data: { 'name' => 'a', 'test' => 'b' }
+      ))
+    end
+
+    it 'should have valid getter methods' do
+      test_model.must_respond_to(:name)
+      test_model.must_respond_to(:test)
+      test_model.name.must_equal('a')
+      test_model.test.must_equal('b')
+    end
+
+  end
+
+  describe 'attributes' do
+
+    it 'should return the correct attributes' do
+      TestModel.attributes.must_equal([ :name, :test ])
+    end
+
+    it 'should return the correct inherited attributes' do
+      OtherModel.attributes.must_equal([ :name, :test, :asdf ])
+    end
+
+  end
+
+  describe 'has_attribute?' do
+    # TODO write tests and implement
+  end
 
   describe '#initialize' do
 
@@ -18,6 +55,23 @@ describe Model do
       model.content.must_equal('content')
       model.data.must_equal(data)
     end
+
+  end
+
+  describe '#content' do
+
+    it 'can set the content' do
+      document = mock_document(
+        content: 'Some content',
+        data: { 'name' => 'epi' }
+      )
+      episode = Model.new(document)
+      episode.content.must_equal('Some content')
+    end
+
+  end
+
+  describe '#valid?' do
 
     it 'should be invalid without a name' do
       document = stub(content: 'CONTENT', data: { 'noname' => 'a' })
