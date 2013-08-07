@@ -11,12 +11,8 @@ class Show < Model
 
   def audioformats
     if audioformat_names = data['audioformats']
-      if audioformat_names.is_a?(Array)
-        audioformats = Array.new
-        audioformat_names.each do |format|
-          audioformats << Audioformat.first(name: format)
-        end
-        return audioformats
+      audioformat_names.map do |format|
+        Audioformat.first(name: format)
       end
     end
   end
