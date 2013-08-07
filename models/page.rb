@@ -8,3 +8,4 @@ class Page < Model
   attribute :quip
 
 end
+

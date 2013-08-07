@@ -10,7 +10,7 @@ class Episode < Model
   attribute :comments
   attribute :audioformats
 
-  belongs_to :show, :Show
+  belongs_to :Show, :show
 
   def self.default_sort_by
     :date

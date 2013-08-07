@@ -7,7 +7,7 @@ class Show < Model
   attribute :author
   attribute :audioformats
 
-  has_many :episodes, :Episode
+  has_many :Episode, :episodes
 
   def audioformats
     if audioformat_names = data['audioformats']
@@ -34,3 +34,4 @@ class Show < Model
   end
 
 end
+
