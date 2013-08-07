@@ -25,11 +25,11 @@ def generate_document(header, content = '')
 EOF
 end
 
-def mock_document(attributes)
-  mock_content = mock()
+def mock_with_attributes(attributes)
+  mock_obj = mock
   attributes.each do |attr, value|
-    mock_content.expects(attr).returns(value)
+    mock_obj.expects(attr).returns(value)
   end
 
-  mock_content
+  mock_obj
 end

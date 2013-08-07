@@ -15,7 +15,7 @@ describe Model do
   describe 'attribute' do
 
     let(:test_model) do
-      TestModel.new(mock_document(
+      TestModel.new(mock_with_attributes(
         content: 'foo',
         data: { 'name' => 'a', 'test' => 'b' }
       ))
@@ -50,7 +50,7 @@ describe Model do
 
     it 'should call the right document methods' do
       data = { 'foo' => 'bar' }
-      document = mock_document(content: 'content', data: data)
+      document = mock_with_attributes(content: 'content', data: data)
       model = Model.new(document)
       model.content.must_equal('content')
       model.data.must_equal(data)
@@ -61,7 +61,7 @@ describe Model do
   describe '#content' do
 
     it 'can set the content' do
-      document = mock_document(
+      document = mock_with_attributes(
         content: 'Some content',
         data: { 'name' => 'epi' }
       )
