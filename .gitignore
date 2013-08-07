@@ -23,3 +23,5 @@ doc/
 *.iml
 
 /dump.rdb
+
+tags
