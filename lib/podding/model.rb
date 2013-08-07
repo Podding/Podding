@@ -60,28 +60,38 @@ class Model
       @data[name.to_s]
     end
 
-    attributes << name
+    add_attribute(name)
+  end
+
+  def self.add_attribute(attr)
+    @attrs ||= [ ]
+
+    @attrs << attr
   end
 
   def self.attributes
-    @attrs ||= [ ]
-  end
-
-  def self.belongs_to(name, model)
-    define_method name do
-      name = name.to_s
-      model = Utils.class_lookup(self.class, model)
-      model.first(:name => self.data[name])
+    if superclass.respond_to?(:attributes)
+      superclass.attributes + @attrs
+    else
+      @attrs
     end
   end
 
-  def self.has_many(name, model, reference = to_reference)
+  def self.belongs_to(model, name)
     define_method(name) do
-      model = Utils.class_lookup(self.class, model)
+      name = name.to_s
+      model_class = Utils.class_lookup(self.class, model)
+      model_class.first(:name => self.data[name])
+    end
+  end
+
+  def self.has_many(model, name, reference = to_reference)
+    define_method(name) do
+      model_class = Utils.class_lookup(self.class, model)
       if reference.to_s.end_with?("s")
-        model.find_match(:"#{ reference }" => self.name)
+        model_class.find_match(:"#{ reference }" => self.name)
       else
-        model.find(:"#{ reference }" => self.name)
+        model_class.find(:"#{ reference }" => self.name)
       end
     end
   end
@@ -94,7 +104,7 @@ class Model
 
   attribute :name
 
-  def initialize(document, options = {})
+  def initialize(document, options = { })
     @path = options[:path]
     @document = document
     @content = @document.content
@@ -106,7 +116,7 @@ class Model
   end
 
   def validate
-    assert_present :name
+    assert_present(:name)
   end
 
   def template
