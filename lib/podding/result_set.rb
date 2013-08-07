@@ -8,6 +8,9 @@ class ResultSet
   def initialize(results)
     validate_results(results)
     @results = results
+
+    # Make sure it's immutable
+    @results.freeze
   end
 
   def all
@@ -78,13 +81,18 @@ class ResultSet
   end
 
   def group_by(attribute)
-    @results.each_with_object({ }) do |result, acc|
-      acc[result.send(attribute)] ||= []
-      acc[result.send(attribute)] << result
+    grouped = @results.each_with_object({ }) do |result, acc|
+      key = result.send(attribute)
+      acc[key] ||= []
+      acc[key] << result
     end
+    grouped.default = [ ]
+
+    grouped
   end
 
   def sort_by(attribute)
+    attribute = attribute.to_sym
     ResultSet.new(@results.sort_by(&attribute))
   end
 
