@@ -42,7 +42,7 @@ class Episode < Model
       data['status']
     else
       if live_date and live_date == Date.today
-      "live"
+        "live"
       elsif live_date and live_date > Date.today
         "planned"
       else
@@ -82,39 +82,20 @@ class Episode < Model
   end
 
   def audioformats # returns a hash: name: url
-    if audioformats_data = data['audioformats']
-       if audioformats_data.is_a?(Hash)
-         return audioformats_data
-       elsif audioformats_data.is_a?(Array)
-          
-          audioformats_hash = Hash.new
-          
-          
-          audioformats_array = Array.new
-          audioformats_data.each do |format|
-            audioformats_array << Audioformat.first(name: format)
-          end
-
-          
-          audioformats_array.each do | audioformat |
-            audioformats_hash[audioformat.name] = "/audio/" + self.name + audioformat.file_extension # to do: use settings for base bath
-          end
-          return audioformats_hash
-       end
-
-    elsif audioformats_array = self.show.audioformats
-      audioformats_hash = Hash.new
-      audioformats_array.each do | audioformat |
-        audioformats_hash[audioformat.name] = "/audio/" + self.name + audioformat.file_extension # to do: use settings for base bath
+    if formats_data = data['audioformats']
+      if formats_data.is_a?(Hash)
+        formats_data
+      elsif formats_data.is_a?(Array)
+        audioformats = formats_data.map { |format| Audioformat.first(name: format) }
+        audioformats_to_hash(audioformats)
       end
-      return audioformats_hash
-
-      # to do: use defaults from settings
-    
+    elsif audioformats = self.show.audioformats
+      audioformats_to_hash(audioformats)
     else
+      # TODO: use defaults from settings
       {}
     end
-  end # audioformats
+  end
 
   def number
     name.split("-",2)[1]
@@ -131,4 +112,16 @@ class Episode < Model
     end
   end
 
+  def audioformats_to_hash(formats)
+    formats.each_with_object({ }) do |format, memo|
+      memo[audioformat.name] = audiopath_for_format(format)
+    end
+  end
+
+  def audiopath_for_format(format)
+    # TODO: use settings for base bath
+    "/audio/#{ self.name }#{ format.file_extension }"
+  end
+
 end
+
