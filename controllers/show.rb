@@ -3,7 +3,7 @@
 class Podding < Sinatra::Base
 
   get "/shows" do
-    @page = Page.first(name: "shows")
+    @pagetitle = "Shows"
     @shows = Show.all
     slim :shows
   end

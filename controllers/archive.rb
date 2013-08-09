@@ -3,7 +3,7 @@
 class Podding < Sinatra::Base
 
   get "/archive" do
-    @page = Page.first(name: "archive")
+    @pagetitle = "Archive"
 
     # TODO: Use real finding engine
     all_episodes = Episode.all
