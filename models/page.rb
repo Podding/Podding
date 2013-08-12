@@ -9,6 +9,8 @@ class Page < Model
   attribute :special
   attribute :is_secondary
   attribute :is_unimportant
+  attribute :is_hidden
+  attribute :short_title
 
 end
 
