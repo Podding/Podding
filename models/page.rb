@@ -8,6 +8,7 @@ class Page < Model
   attribute :quip
   attribute :special
   attribute :is_secondary
+  attribute :is_unimportant
 
 end
 
