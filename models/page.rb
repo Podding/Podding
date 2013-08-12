@@ -6,6 +6,7 @@ class Page < Model
   attribute :icon
   attribute :label
   attribute :quip
+  attribute :special
 
 end
 
