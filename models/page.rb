@@ -7,6 +7,7 @@ class Page < Model
   attribute :label
   attribute :quip
   attribute :special
+  attribute :is_secondary
 
 end
 
