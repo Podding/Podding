@@ -6,10 +6,10 @@ class Page < Model
   attribute :icon
   attribute :label
   attribute :quip
-  attribute :special
   attribute :is_secondary
   attribute :is_unimportant
   attribute :is_hidden
+  attribute :is_special
   attribute :short_title
 
 end
