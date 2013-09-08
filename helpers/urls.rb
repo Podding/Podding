@@ -11,8 +11,8 @@ module URLs
       show_name = model.show.name
       "/shows/#{ show_name }/#{ name }"
     elsif namespace == 'pages'
-      return "/#{ model.name }" if model.is_special
-      "/pages/#{ model.name }"
+      return "/#{ name }" if model.is_special
+      "/pages/#{ name }"
     else
       "/#{ namespace }/#{ name }"
     end
