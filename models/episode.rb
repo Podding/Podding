@@ -3,14 +3,14 @@
 require 'date'
 
 class Episode < Model
+  belongs_to :Show, :show
+  inherits_from :show, :audioformats
 
   attr_reader :teaser
 
   attribute :title
   attribute :comments
   attribute :audioformats
-
-  belongs_to :Show, :show
 
   def self.default_sort_by
     :date
@@ -82,6 +82,7 @@ class Episode < Model
   end
 
   def audio_files # returns a hash: audioformat: url
+    # TODO: After implementing real many-to-many relations, remove lookup code
     formats_data = self.audioformats
     if formats_data.is_a?(Hash)
       formats_data.each_with_object({}) do | entry, audio_files_hash |
