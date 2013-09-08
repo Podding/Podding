@@ -81,19 +81,16 @@ class Episode < Model
     end
   end
 
-  def audioformats # returns a hash: name: url
-    if formats_data = data['audioformats']
-      if formats_data.is_a?(Hash)
-        formats_data
-      elsif formats_data.is_a?(Array)
-        audioformats = formats_data.map { |format| Audioformat.first(name: format) }
-        audioformats_to_hash(audioformats)
+  def audio_files # returns a hash: audioformat: url
+    formats_data = self.audioformats
+    if formats_data.is_a?(Hash)
+      formats_data.each_with_object({}) do | entry, audio_files_hash |
+        audioformat = Audioformat.first(name: entry[0] )
+        audio_files_hash[ audioformat ] = entry[1]
       end
-    elsif audioformats = self.show.audioformats
+    elsif formats_data.is_a?(Array)
+      audioformats = formats_data.map { |format| Audioformat.first(name: format) }
       audioformats_to_hash(audioformats)
-    else
-      # TODO: use defaults from settings
-      {}
     end
   end
 
@@ -113,8 +110,8 @@ class Episode < Model
   end
 
   def audioformats_to_hash(formats)
-    formats.each_with_object({ }) do |format, memo|
-      memo[audioformat.name] = audiopath_for_format(format)
+    formats.each_with_object({ }) do |format, audio_files_hash|
+      audio_files_hash[format] = audiopath_for_format(format)
     end
   end
 
