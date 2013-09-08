@@ -10,6 +10,9 @@ module URLs
     if namespace == 'episodes'
       show_name = model.show.name
       "/shows/#{ show_name }/#{ name }"
+    elsif namespace == 'pages'
+      return "/#{ model.name }" if model.is_special
+      "/pages/#{ model.name }"
     else
       "/#{ namespace }/#{ name }"
     end
