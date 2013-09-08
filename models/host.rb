@@ -9,6 +9,7 @@ class Host < Model
   attribute :image_url
   attribute :blog_url
   attribute :quip
+  attribute :guest
 
   has_many :Episode, :episodes, :hosts
 
