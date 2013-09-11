@@ -16,6 +16,7 @@ GEM
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.2.2)
     eventmachine (1.0.3)
+    i18n (0.6.1)
     jsmin (1.0.1)
     json (1.8.0)
     less (2.3.2)
@@ -100,6 +101,7 @@ PLATFORMS
 
 DEPENDENCIES
   builder
+  i18n
   json
   less
   mocha

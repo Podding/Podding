@@ -16,6 +16,7 @@ require 'redcarpet'
 require 'net/http'
 require 'net/https'
 require 'json'
+require 'i18n'
 
 require_relative 'lib/podding'
 
@@ -61,6 +62,11 @@ class Podding < Sinatra::Base
     serve '/css',    from: 'source/css'
     serve '/images', from: 'source/images'
   end
+
+  # Configure localisation
+
+  I18n.load_path += Dir[File.join(source_dir, 'locales', '*.yml').to_s]
+  I18n.locale = settings.language
 
   # Load all helpers
 

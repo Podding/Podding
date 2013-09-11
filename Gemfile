@@ -33,3 +33,7 @@ group :development, :test do
   gem 'shotgun'
   gem 'w3c_validators'
 end
+
+# Localisation
+
+gem 'i18n'
