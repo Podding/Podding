@@ -1,6 +1,6 @@
 h1 Episode template
 
-== markdown @episode.content
+== @episode.content.render
 
 - for key, value in @episode.data
   p #{ key }: #{ value }

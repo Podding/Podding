@@ -1,6 +1,6 @@
 h1 Single host template
 
-== markdown @host.content
+== @host.content.render
 
 - for key, value in @host.data
   p #{ key }: #{ value }
