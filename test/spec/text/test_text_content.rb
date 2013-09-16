@@ -15,6 +15,7 @@ describe TextContent do
 
     @settings = {replace: "e"}
     @text = TextContent.new("It's tested.")
+    @empty_text = TextContent.new
     TextFilterEngine.register_filter(Filter)
 
   end
@@ -36,6 +37,22 @@ describe TextContent do
 
     it 'should render with settings' do
       @text.render(@settings).must_equal("It's t_sted.")
+    end
+  end
+
+  describe 'empty?' do
+    it 'should return true if empty' do
+      @empty_text.empty?.must_equal(true)
+    end
+
+    it 'should return false if not empty' do
+      @text.empty?.must_equal(false)
+    end
+  end
+
+  describe 'to_s' do
+    it 'should return the raw content' do
+      @text.to_s.must_equal("It's tested.")
     end
   end
 

@@ -13,4 +13,12 @@ class TextContent
     filters.each{ |filter| rendered_content = filter.render(rendered_content)}
     rendered_content
   end
+
+  def empty?
+    @raw == ""
+  end
+
+  def to_s
+    @raw
+  end
 end
