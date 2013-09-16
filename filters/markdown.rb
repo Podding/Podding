@@ -10,3 +10,5 @@ class MarkdownFilter < TextFilter
 		renderer.render(content)
 	end
 end
+
+TextFilterEngine.register_filter(MarkdownFilter)
