@@ -54,6 +54,7 @@ class Podding < Sinatra::Base
   require_relative 'controllers/init'
   require_relative 'models/init'
   require_relative 'helpers/init'
+  require_relative 'filters/init'
 
   Less.paths << source_dir + "/css"
 
