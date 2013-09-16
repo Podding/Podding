@@ -142,7 +142,7 @@ class Model
   def initialize(document, options = { })
     @path = options[:path]
     @document = document
-    @content = @document.content
+    @content = TextContent.new(@document.content)
     @data = @document.data
   end
 

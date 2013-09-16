@@ -102,11 +102,11 @@ class Episode < Model
   private
 
   def set_teaser
-    if match = @content.match(/^(!!!\s*\n(.*?)\n?)^(!!!\s*$\n?)(.*)/m)
-      @teaser = match[2]
-      @content = match[4]
+    if match = @content.raw.match(/^(!!!\s*\n(.*?)\n?)^(!!!\s*$\n?)(.*)/m)
+      @teaser = TextContent.new(match[2])
+      @content = TextContent.new(match[4])
     else
-      @teaser = ''
+      @teaser = TextContent.new
     end
   end
 

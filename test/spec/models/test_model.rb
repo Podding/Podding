@@ -52,7 +52,7 @@ describe Model do
       data = { 'foo' => 'bar' }
       document = mock_with_attributes(content: 'content', data: data)
       model = Model.new(document)
-      model.content.must_equal('content')
+      model.content.raw.must_equal('content')
       model.data.must_equal(data)
     end
 
@@ -66,7 +66,7 @@ describe Model do
         data: { 'name' => 'epi' }
       )
       episode = Model.new(document)
-      episode.content.must_equal('Some content')
+      episode.content.raw.must_equal('Some content')
     end
 
   end
