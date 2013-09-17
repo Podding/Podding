@@ -8,6 +8,7 @@ require_relative 'podding/result_set'
 require_relative 'podding/model'
 require_relative 'podding/text_filters'
 require_relative 'podding/text_content'
+require_relative 'podding/settings'
 
 
 # Storage engines
