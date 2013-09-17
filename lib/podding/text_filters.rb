@@ -1,8 +1,6 @@
 # encoding: utf-8
 
 class TextFilterEngine
-  
-  # Keeps track of filters
 
   def self.register_filter(filter)
     filters << filter
@@ -19,6 +17,7 @@ class TextFilterEngine
 end
 
 class TextFilter
+
   def self.defaults(defaults = {})
     @defaults ||= defaults
   end
