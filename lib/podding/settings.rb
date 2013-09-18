@@ -1,16 +1,8 @@
 # encoding: utf-8
 
-class Settings
-  attr_reader :settings # for testing
+require 'settingslogic'
 
-  def initialize(settings_file)
-    @settings = YAML.load(settings_file)
-  end
-
-  def method_missing(method, *args)
-    lookup_string = method.to_s
-    return @settings[lookup_string] if @settings.has_key?(lookup_string)
-    return nil
-  end
-
+class Settings < Settingslogic
+  source "#{File.dirname(__FILE__)}/../../source/config.yaml"
+  load!
 end

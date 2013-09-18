@@ -7,6 +7,7 @@ gem 'sinatra-assetpack', :require => 'sinatra/assetpack'
 gem 'sinatra-contrib'
 gem 'puma'
 gem 'json'
+gem 'settingslogic'
 
 # Templating
 gem 'redcarpet'

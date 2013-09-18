@@ -54,6 +54,7 @@ GEM
       redis (~> 3.0.0)
     ref (1.0.5)
     scrivener (0.2.0)
+    settingslogic (2.0.9)
     shotgun (0.9)
       rack (>= 1.0)
     sidekiq (2.12.1)
@@ -113,6 +114,7 @@ DEPENDENCIES
   redcarpet
   redis
   scrivener
+  settingslogic
   shotgun
   sidekiq
   sinatra
