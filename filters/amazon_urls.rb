@@ -6,7 +6,7 @@ class AmazonUrls < TextFilter
   expects :markdown
 
   def render(content)
-    asin = /\(\s*([(\d)(A-Z)]{10})\s*\)/
+    asin_pattern = /\(\s*([(\d)(A-Z)]{10})\s*\)/
 
     # Set defaults
     amazon_base_url = "https://amazon.com"
@@ -15,11 +15,13 @@ class AmazonUrls < TextFilter
     amazon_base_url = Settings["amazon_base_url"] if Settings["amazon_base_url"]
     amazon_id = Settings["amazon_id"] if Settings["amazon_id"]
 
-    content.gsub(asin) do |match|
+    content.gsub(asin_pattern) do |match|
+      asin = match[1..10]
+
       amazon_link = "( "
       amazon_link += amazon_base_url
       amazon_link += "/dp/"
-      amazon_link += match[1..10]
+      amazon_link += asin
       if amazon_id
         amazon_link += "?tag="
         amazon_link += amazon_id
