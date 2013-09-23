@@ -2,15 +2,30 @@
 
 class TextFilterEngine
 
-  def self.register_filter(filter)
-    filters << filter
+  class << self
+
+    def filters
+      instance.filters
+    end
+
+    def register_filter(filter)
+      instance.filters << filter
+    end
+
+    def unregister_filter(filter)
+      instance.filters.delete(filter)
+    end
+
+    private
+      def instance
+        @instance ||= TextFilterEngine.new
+      end
+
   end
 
-  def self.unregister_filter(filter)
-    filters.delete(filter)
-  end
+  # TextFilterEngine instance
 
-  def self.filters
+  def filters
     @filters ||= []
   end
 
