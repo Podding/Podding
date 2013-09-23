@@ -32,9 +32,11 @@ class TextFilter
     self.priority <=> other.priority
   end
 
-  # The markdown -> html converter is expected to have priority 0
+  # Filters are executed like this: text -> markdown -> html
   def self.expects(format = :markdown)
-    if format == :markdown
+    if format == :text
+      self.priority -20
+    elsif format == :markdown
       self.priority -10
     elsif format == :html
       self.priority 10

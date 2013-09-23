@@ -2,6 +2,10 @@
 
 require_relative '../helper'
 
+class ZeroethFilter < TextFilter
+  expects :text
+end
+
 class ThirdFilter < TextFilter
   expects :html
 
@@ -34,16 +38,19 @@ describe TextFilter do
     TextFilterEngine.register_filter(FirstFilter)
     TextFilterEngine.register_filter(SecondFilter)
     TextFilterEngine.register_filter(ThirdFilter)
+    TextFilterEngine.register_filter(ZeroethFilter)
     @settings = {test: 1}
     @filter_1 = FirstFilter.new(@settings)
     @filter_2 = SecondFilter.new
     @filter_3 = ThirdFilter.new
+    @filter_0 = ZeroethFilter.new
   end
 
   after do
     TextFilterEngine.unregister_filter(FirstFilter)
     TextFilterEngine.unregister_filter(SecondFilter)
     TextFilterEngine.unregister_filter(ThirdFilter)
+    TextFilterEngine.unregister_filter(ZeroethFilter)
   end
 
   describe 'filters' do
@@ -75,8 +82,8 @@ describe TextFilter do
       SecondFilter.priority.must_equal(0)
     end
 
-    it 'should sort filters expecting markdown before filters expecting html (and the one with priority 0 in the middle)' do
-      TextFilterEngine.filters.sort.must_equal([FirstFilter, SecondFilter, ThirdFilter])
+    it 'should sort filters according to their expectations' do
+      TextFilterEngine.filters.sort.must_equal([ZeroethFilter, FirstFilter, SecondFilter, ThirdFilter])
     end
   end
 
