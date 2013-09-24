@@ -67,7 +67,11 @@ class Podding < Sinatra::Base
   # Configure localisation
 
   I18n.load_path += Dir[File.join(source_dir, 'locales', '*.yml').to_s]
-  I18n.locale = settings.language
+  if Settings["language"]
+    I18n.locale = Settings.language
+  else
+    I18n.locale = "en"
+  end
 
   # Load all helpers
 
