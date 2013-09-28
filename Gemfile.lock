@@ -88,6 +88,7 @@ GEM
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
+    thor (0.18.1)
     tilt (1.4.1)
     timers (1.1.0)
     treetop (1.4.14)
@@ -122,4 +123,5 @@ DEPENDENCIES
   sinatra-contrib
   slim
   therubyracer
+  thor
   w3c_validators

@@ -38,3 +38,7 @@ end
 # Localisation
 
 gem 'i18n'
+
+# CLI
+
+gem 'thor'
