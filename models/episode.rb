@@ -4,6 +4,7 @@ require 'date'
 
 class Episode < Model
   belongs_to :Show, :show
+  # TODO: Use default value mechanism with lambda
   inherits_from :show, :audioformats
 
   attr_reader :teaser
@@ -56,6 +57,7 @@ class Episode < Model
   end
 
   def title
+    # TODO: Use default value mechanism
     if data['title']
       data['title']
     else
@@ -64,6 +66,7 @@ class Episode < Model
   end
 
   def hosts
+    # TODO: only support plural attribute
     if host_names = data['hosts']
       if host_names.respond_to?(:map)
         hosts = host_names.map do |host|
