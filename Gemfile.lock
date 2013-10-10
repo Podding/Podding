@@ -3,18 +3,13 @@ GEM
   specs:
     backports (3.3.1)
     builder (3.2.2)
-    celluloid (0.14.1)
-      timers (>= 1.0.0)
+    byebug (2.2.2)
+      columnize (~> 0.3.6)
+      debugger-linecache (~> 1.2.0)
     coderay (1.0.9)
     columnize (0.3.6)
     commonjs (0.2.6)
-    connection_pool (1.1.0)
-    debugger (1.6.0)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.2.1)
     debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.2.2)
     eventmachine (1.0.3)
     i18n (0.6.1)
     jsmin (1.0.1)
@@ -38,9 +33,9 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
-    pry-debugger (0.2.2)
-      debugger (~> 1.3)
-      pry (~> 0.9.10)
+    pry-byebug (1.2.0)
+      byebug (~> 2.2)
+      pry (~> 0.9.12)
     puma (2.0.1)
       rack (>= 1.1, < 2.0)
     rack (1.5.2)
@@ -49,20 +44,11 @@ GEM
     rack-test (0.6.2)
       rack (>= 1.0)
     redcarpet (2.3.0)
-    redis (3.0.4)
-    redis-namespace (1.3.0)
-      redis (~> 3.0.0)
     ref (1.0.5)
     scrivener (0.2.0)
     settingslogic (2.0.9)
     shotgun (0.9)
       rack (>= 1.0)
-    sidekiq (2.12.1)
-      celluloid (>= 0.14.1)
-      connection_pool (>= 1.0.0)
-      json
-      redis (>= 3.0)
-      redis-namespace
     sinatra (1.4.3)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -89,7 +75,6 @@ GEM
       libv8 (~> 3.11.8.12)
       ref
     tilt (1.4.1)
-    timers (1.1.0)
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
@@ -103,20 +88,17 @@ PLATFORMS
 DEPENDENCIES
   builder
   i18n
-  json
   less
   mocha
   pony
   pry
-  pry-debugger
+  pry-byebug
   puma
   rack
   redcarpet
-  redis
   scrivener
   settingslogic
   shotgun
-  sidekiq
   sinatra
   sinatra-assetpack
   sinatra-contrib
