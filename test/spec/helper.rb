@@ -7,7 +7,7 @@ require 'mocha/setup'
 require 'ostruct'
 
 require 'pry'
-require 'pry-debugger'
+require 'pry-byebug'
 
 require_relative '../../lib/podding'
 require_relative '../../lib/podding/storage_engines/memory_storage'
