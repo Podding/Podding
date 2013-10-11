@@ -2,89 +2,65 @@
 
 require_relative '../helper'
 
-class ZeroethFilter < TextFilter
-  expects :text
-end
-
-class ThirdFilter < TextFilter
-  expects :html
-
-  # Needed for external access to @settings instance variable
-  attr_reader :settings
-
-end
-
-class SecondFilter < TextFilter
+class DefaultsFilter < TextFilter
   defaults test: 42
-  priority 0
-
   # Needed for external access to @settings instance variable
   attr_reader :settings
-
 end
 
-class FirstFilter < TextFilter
-  defaults test: 0
-  expects :markdown
-
-  # Needed for external access to @settings instance variable
-  attr_reader :settings
-
+class PrioFilter < TextFilter
+  priority 2342
 end
+
+class AFilter < TextFilter ; priority 10; end
+class BFilter < TextFilter ; priority 0; end
+class CFilter < TextFilter ; priority 5; end
 
 describe TextFilter do
 
-  before do
-    TextFilterEngine.register_filter(FirstFilter)
-    TextFilterEngine.register_filter(SecondFilter)
-    TextFilterEngine.register_filter(ThirdFilter)
-    TextFilterEngine.register_filter(ZeroethFilter)
-    @settings = {test: 1}
-    @filter_1 = FirstFilter.new(@settings)
-    @filter_2 = SecondFilter.new
-    @filter_3 = ThirdFilter.new
-    @filter_0 = ZeroethFilter.new
-  end
+  describe '::defaults' do
 
-  after do
-    TextFilterEngine.unregister_filter(FirstFilter)
-    TextFilterEngine.unregister_filter(SecondFilter)
-    TextFilterEngine.unregister_filter(ThirdFilter)
-    TextFilterEngine.unregister_filter(ZeroethFilter)
-  end
-
-  describe 'filters' do
-
-    it 'should keep track of subclasses' do
-      TextFilterEngine.filters.must_include(FirstFilter)
-      TextFilterEngine.filters.must_include(SecondFilter)
-      TextFilterEngine.filters.must_include(ThirdFilter)
-    end
-
-  end
-
-  describe 'defaults' do
     it 'should create empty defaults' do
-      ThirdFilter.defaults.must_equal({})
+      TextFilter.defaults.must_equal({})
     end
 
     it 'should keep defaults if no settings are passed' do
-      @filter_2.settings.must_equal({test: 42})
+      DefaultsFilter.new.settings.must_equal({ test: 42 })
     end
 
-    it 'should overwrite defaults with explicit settings' do
-      @filter_1.settings.must_equal(@settings)
+    it 'should merge defaults with explicit settings' do
+      settings = { foo: 'bar' }
+      filter = DefaultsFilter.new(settings)
+      filter.settings.must_equal({ test: 42, foo: 'bar' })
     end
+
+    it 'should overwrite defaults when explicitly specified' do
+      filter = DefaultsFilter.new({ test: 1337 })
+      filter.settings.must_equal({ test: 1337 })
+    end
+
   end
 
-  describe 'priority' do
+  describe '::priority' do
+
     it 'should assign priority when explicitly stated' do
-      SecondFilter.priority.must_equal(0)
+      PrioFilter.priority.must_equal(2342)
     end
 
     it 'should sort filters according to their expectations' do
-      TextFilterEngine.filters.sort.must_equal([ZeroethFilter, FirstFilter, SecondFilter, ThirdFilter])
+      [AFilter, BFilter, CFilter].sort.must_equal([BFilter, CFilter, AFilter])
     end
+
+  end
+
+  describe '#render' do
+
+    it 'should raise an exception when not overridden' do
+      lambda do
+        TextFilter.new.render('')
+      end.must_raise(NotImplementedError)
+    end
+
   end
 
 end
