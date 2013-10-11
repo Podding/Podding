@@ -9,6 +9,12 @@ require 'nokogiri'
 require 'pry'
 require 'pry-byebug'
 
+begin
+  require 'minitest/pride'
+rescue LoadError
+  # Continue, but without colors
+end
+
 require_relative '../../app'
 
 include Rack::Test::Methods

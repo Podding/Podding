@@ -16,6 +16,12 @@ require_relative '../../lib/podding'
 require_relative '../../models/init'
 require_relative '../../helpers/init'
 
+begin
+  require 'minitest/pride'
+rescue LoadError
+  # Continue, but without colors
+end
+
 Mlk::Model.storage_engine = Mlk::MemoryStorage
 
 def generate_document(header, content = '')
