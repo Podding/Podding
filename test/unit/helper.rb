@@ -9,12 +9,14 @@ require 'ostruct'
 require 'pry'
 require 'pry-byebug'
 
+require 'mlk'
+require 'mlk/storage_engines/memory_storage'
+
 require_relative '../../lib/podding'
-require_relative '../../lib/podding/storage_engines/memory_storage'
 require_relative '../../models/init'
 require_relative '../../helpers/init'
 
-Model.storage_engine = MemoryStorage
+Mlk::Model.storage_engine = MemoryStorage
 
 def generate_document(header, content = '')
 <<-EOF
