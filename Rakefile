@@ -6,6 +6,7 @@ require 'rake/testtask'
 desc 'Validate all entries of all models'
 task :model_validate do
   require 'mlk'
+  require 'mlk/storage_engines/file_storage'
   require_relative 'lib/podding'
   require_relative 'models/init'
 
