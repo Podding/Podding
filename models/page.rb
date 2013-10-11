@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Page < Model
+class Page < Mlk::Model
 
   attribute :title
   attribute :icon

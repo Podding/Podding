@@ -16,7 +16,7 @@ require_relative '../../lib/podding'
 require_relative '../../models/init'
 require_relative '../../helpers/init'
 
-Mlk::Model.storage_engine = MemoryStorage
+Mlk::Model.storage_engine = Mlk::MemoryStorage
 
 def generate_document(header, content = '')
 <<-EOF

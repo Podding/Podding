@@ -17,9 +17,12 @@ def app
   Podding
 end
 
-FileStorage.base_path = File.dirname(__FILE__) + '/source'
-Model.storage_engine = FileStorage
-Podding.set :views, File.dirname(__FILE__) + '/source/templates'
+base_dir = File.dirname(__FILE__)
+
+Mlk::FileStorage.base_path = File.join(base_dir, '/source')
+Mlk::Model.storage_engine = Mlk::FileStorage
+
+Podding.set :views, File.join(base_dir, '/source/templates')
 
 def validate_meta_data(url, options)
   get url

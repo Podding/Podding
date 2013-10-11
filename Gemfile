@@ -16,13 +16,14 @@ gem 'therubyracer'
 gem 'builder'
 
 # Data
-gem 'scrivener'
+gem 'mlk', :git => 'https://github.com/pfleidi/mlk.git'
 
 # Mail
 gem 'pony'
 
 # Debugging
 group :development, :test do
+  gem 'rake'
   gem 'pry'
   gem 'pry-byebug'
   gem 'mocha'

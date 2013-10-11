@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Host < Model
+class Host < Mlk::Model
 
   attribute :full_name
   attribute :twitter_name
@@ -25,3 +25,4 @@ class Host < Model
   end
 
 end
+

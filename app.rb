@@ -18,6 +18,9 @@ require 'net/https'
 require 'json'
 require 'i18n'
 
+require 'mlk'
+require 'mlk/storage_engines/file_storage'
+
 require_relative 'lib/podding'
 
 class Podding < Sinatra::Base
@@ -34,8 +37,8 @@ class Podding < Sinatra::Base
   set :public_folder, source_dir + '/assets'
   set :views, source_dir + '/templates'
 
-  FileStorage.base_path = source_dir
-  Model.storage_engine = FileStorage
+  Mlk::FileStorage.base_path = source_dir
+  Mlk::Model.storage_engine = Mlk::FileStorage
 
   configure :production do
     # ...

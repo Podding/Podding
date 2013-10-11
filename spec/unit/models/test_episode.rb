@@ -9,15 +9,15 @@ describe Episode do
 
     document = mock_with_attributes(content: content, data: { 'name' => 'epi' })
     episode = Episode.new(document)
-    episode.content.raw.must_equal('This is the content')
-    episode.teaser.raw.must_equal('This is the teaser')
+    episode.content.must_equal('This is the content')
+    episode.teaser.must_equal('This is the teaser')
   end
 
   it 'has an empty teaser when not available' do
     document = mock_with_attributes(content: '', data: { 'foo' => 'bar' })
     episode = Episode.new(document)
-    episode.content.raw.must_equal('')
-    episode.teaser.raw.must_equal('')
+    episode.content.must_equal('')
+    episode.teaser.must_equal('')
   end
 
   describe '#date' do

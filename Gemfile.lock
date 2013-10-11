@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/pfleidi/mlk.git
+  revision: 1117bae620dc114a3839d897758f7177686fc56e
+  specs:
+    mlk (0.0.1)
+      scrivener
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -43,6 +50,7 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    rake (10.1.0)
     redcarpet (2.3.0)
     ref (1.0.5)
     scrivener (0.2.0)
@@ -89,14 +97,15 @@ DEPENDENCIES
   builder
   i18n
   less
+  mlk!
   mocha
   pony
   pry
   pry-byebug
   puma
   rack
+  rake
   redcarpet
-  scrivener
   settingslogic
   shotgun
   sinatra
