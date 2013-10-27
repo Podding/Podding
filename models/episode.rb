@@ -11,6 +11,8 @@ class Episode < Model
   attribute :title
   attribute :comments
   attribute :audioformats
+  attribute :date
+  attribute :live_date
 
   def self.default_sort_by
     :date
@@ -19,14 +21,6 @@ class Episode < Model
   def initialize(document, options = {})
     super
     set_teaser
-  end
-
-  def date
-    Date.parse(data['date'])
-  end
-
-  def live_date
-    Date.parse(data['live_date']) if data['live_date']
   end
 
   def validate
