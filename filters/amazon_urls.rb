@@ -3,7 +3,7 @@
 # In config.yaml specify: amazon_id (your affiliate id), amazon_base_url (for example: https://amazon.de)
 
 class AmazonUrls < TextFilter
-  expects :markdown
+  needs :markdown
 
   def render(content)
     asin_pattern = /\(\s*([(\d)(A-Z)]{10})\s*\)/
@@ -34,3 +34,4 @@ class AmazonUrls < TextFilter
 end
 
 TextFilterEngine.register_filter(AmazonUrls)
+

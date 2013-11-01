@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Audioformat < Model
+class Audioformat < Mlk::Model
   attribute :file_extension
   attribute :suffix
 
@@ -16,6 +16,7 @@ class Audioformat < Model
 
   def file_extension # this is what is used to build an audio file url
     self.suffix + self.extension
-  end # file_extension
+  end
 
-end # audioformat
+end
+

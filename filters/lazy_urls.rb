@@ -8,7 +8,7 @@
 #     * One level deeper! http://foo.com/blah
 
 class LazyUrls < TextFilter
-  expects :text
+  needs :text
 
   def render(content)
     lazyurl = /^ (\s*) ([-+\*]) (\s*) (.*) (\s) (https?:\/(\/\S+)+) $/x
@@ -21,3 +21,4 @@ class LazyUrls < TextFilter
 end
 
 TextFilterEngine.register_filter(LazyUrls)
+

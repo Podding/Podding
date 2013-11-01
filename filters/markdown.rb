@@ -12,3 +12,4 @@ class MarkdownFilter < TextFilter
 end
 
 TextFilterEngine.register_filter(MarkdownFilter)
+

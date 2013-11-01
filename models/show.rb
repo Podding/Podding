@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Show < Model
+class Show < Mlk::Model
 
   attribute :title
   attribute :cover_url

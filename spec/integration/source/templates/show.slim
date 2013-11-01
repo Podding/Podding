@@ -1,0 +1,11 @@
+h1 Show single template
+
+== render_content(@show.content)
+
+- for key, value in @show.data
+  p #{ key }: #{ value }
+
+h2 Episodes:
+
+- for episode in @show.episodes
+  p episode.title

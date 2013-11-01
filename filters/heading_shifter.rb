@@ -1,5 +1,5 @@
 # A TextFilter that shifts the heading levels in Markdown to start at a certain level
-# Options: 
+# Options:
 # :heading_start_level => NUMBER (from 0 to 6) (default: 0)
 #   - All heading levels will be shifted to start at this level
 #   - 0 means "don't shift"
@@ -7,7 +7,7 @@
 #   - The highest heading level allowed, default (by HTML) is 6.
 
 class HeadingShifter < TextFilter
-  expects :markdown
+  needs :markdown
   defaults heading_start_level: 0, heading_max_level: 6
 
   def render(content)
@@ -44,7 +44,7 @@ class HeadingShifter < TextFilter
         level += 1
       end
       level
-    end 
+    end
 
     # Shifters
 
@@ -89,10 +89,10 @@ class HeadingShifter < TextFilter
     def set_start_heading_level(content, start_level, max_level)
       min_level = find_min_heading_level(content, max_level)
       shift_amount = start_level - min_level
-      
+
       if shift_amount <= 0
         shift_headings_down(content, shift_amount, min_level, max_level)
-      else 
+      else
         shift_headings_up(content, shift_amount, min_level, max_level)
       end
     end
@@ -100,3 +100,4 @@ class HeadingShifter < TextFilter
 end
 
 TextFilterEngine.register_filter(HeadingShifter)
+

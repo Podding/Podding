@@ -2,8 +2,9 @@
 
 require 'date'
 
-class Episode < Model
+class Episode < Mlk::Model
   belongs_to :Show, :show
+  # TODO: Use default value mechanism with lambda
   inherits_from :show, :audioformats
 
   attr_reader :teaser
@@ -50,6 +51,7 @@ class Episode < Model
   end
 
   def title
+    # TODO: Use default value mechanism
     if data['title']
       data['title']
     else
@@ -58,6 +60,7 @@ class Episode < Model
   end
 
   def hosts
+    # TODO: only support plural attribute
     if host_names = data['hosts']
       if host_names.respond_to?(:map)
         hosts = host_names.map do |host|
@@ -96,11 +99,11 @@ class Episode < Model
   private
 
   def set_teaser
-    if match = @content.raw.match(/^(!!!\s*\n(.*?)\n?)^(!!!\s*$\n?)(.*)/m)
-      @teaser = TextContent.new(match[2])
-      @content = TextContent.new(match[4])
+    if match = @content.match(/^(!!!\s*\n(.*?)\n?)^(!!!\s*$\n?)(.*)/m)
+      @teaser = match[2]
+      @content = match[4]
     else
-      @teaser = TextContent.new
+      @teaser = ''
     end
   end
 
