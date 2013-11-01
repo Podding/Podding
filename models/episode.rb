@@ -23,7 +23,7 @@ class Episode < Mlk::Model
   end
 
   def date
-    Date.parse(data['date'])
+    Date.parse(data['date'].to_s)
   end
 
   def live_date
