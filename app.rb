@@ -62,9 +62,9 @@ class Podding < Sinatra::Base
   Less.paths << source_dir + "/css"
 
   assets do
-    serve '/js',     from: 'source/js'
+    serve '/js',     from: 'source/javascript'
     serve '/css',    from: 'source/css'
-    serve '/images', from: 'source/images'
+    serve '/images', from: 'source/assets/images'
   end
 
   # Configure localisation
