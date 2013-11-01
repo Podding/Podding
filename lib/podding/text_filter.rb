@@ -22,6 +22,8 @@ class TextFilter
            when :text then -20
            when :markdown then -10
            when :html then 10
+           else raise ArgumentError,
+             "There's no priority for #{ format } defined. Please use #{ self.name }.priority instead."
            end
 
     self.priority(prio)

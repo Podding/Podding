@@ -1,6 +1,6 @@
 h1 Super Custom Template
 
-== @page.content.render
+== render_content(@page.content)
 
 - for key, value in @page.data
   p #{ key }: #{ value }

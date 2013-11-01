@@ -2,7 +2,7 @@ h1 Multi host template
 
 - for host in @hosts do
 
-  == host.content.render
+  == render_content(host.content)
 
   - for key, value in host.data
     p #{ key }: #{ value }

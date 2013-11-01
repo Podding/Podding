@@ -2,7 +2,7 @@ h1 Shows default template
 
 - for show in @shows do
 
-  == show.content.render
+  == render_content(show.content)
 
   - for key, value in show.data
     p #{ key }: #{ value }

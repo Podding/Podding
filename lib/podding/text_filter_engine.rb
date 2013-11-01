@@ -35,6 +35,6 @@ class TextFilterEngine < TextFilterEngineBase
   include Singleton
   extend SingleForwardable
 
-  def_delegators :instance, :register_filter, :unregister_filter, :filters
+  def_delegators :instance, :register_filter, :unregister_filter, :filters, :render
 end
 

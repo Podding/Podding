@@ -1,6 +1,5 @@
 require 'rake/testtask'
 
-
 # Model stuff
 
 desc 'Validate all entries of all models'
@@ -43,3 +42,4 @@ Rake::TestTask.new do |t|
   t.pattern = 'spec/unit/**/test_*.rb'
   t.verbose = true
 end
+
