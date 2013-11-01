@@ -46,7 +46,7 @@ class Podding < Sinatra::Base
 
   configure :development do
     require 'pry'
-    require 'pry-debugger'
+    require 'pry-byebug'
   end
 
   helpers do
