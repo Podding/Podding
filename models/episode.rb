@@ -12,6 +12,7 @@ class Episode < Mlk::Model
   attribute :title
   attribute :comments
   attribute :audioformats
+  attribute :subtitle
 
   def self.default_sort_by
     :date
@@ -96,6 +97,14 @@ class Episode < Mlk::Model
       audioformats = formats_data.map { |format| Audioformat.first(name: format) }
       audioformats_to_hash(audioformats)
     end
+  end
+
+  # TODO: Find out why I can't use audio_files[format] here
+  def audio_file_by_format(format)
+    audio_files.each do |audioformat, path|
+      return path if audioformat == format
+    end
+    nil
   end
 
   def number
