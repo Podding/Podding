@@ -8,7 +8,7 @@ class Episode < Mlk::Model
   inherits_from :show, :audioformats
 
   attr_reader :teaser
-  attr_reader :shownotes
+  attr_reader :content
 
   attribute :title
   attribute :comments
@@ -117,7 +117,7 @@ class Episode < Mlk::Model
   def set_teaser
     if match = @content.match(/^(!!!\s*\n(.*?)\n?)^(!!!\s*$\n?)(.*)/m)
       @teaser = match[2]
-      @shownotes = match[4]
+      @content = match[4]
     else
       @teaser = ''
     end
