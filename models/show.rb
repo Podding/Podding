@@ -13,6 +13,11 @@ class Show < Mlk::Model
     @data["author"] ? @data["author"] : Settings.author
   end
 
+  # TODO: Use better default mechanism
+  def description
+    @data["description"] ? @data["description"] : Settings.description
+  end
+
   def live_episodes
     Episode.find(show: @data["name"], status: "live")
   end
