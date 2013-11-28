@@ -2,16 +2,11 @@
 
 class Podding < Sinatra::Base
 
-  # Special pages
-
-  get "/pages/archive" do
-    @page = Page.first(name: "archive")
-    @episodes = Episode.all
-    slim :archive
-  end
-
   get "/pages/:name" do |name|
     @page = Page.first(name: name)
+    if @page.is_special
+      redirect to('/' + name)
+    end
     slim @page.template
   end
 

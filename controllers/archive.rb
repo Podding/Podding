@@ -5,7 +5,7 @@ class Podding < Sinatra::Base
   get "/archive" do
     @page = Page.first(name: "archive")
 
-    # workaround until the finding engine is properly implemented
+    # TODO: Use real finding engine
     all_episodes = Episode.all
     episodes = []
     for episode in all_episodes
@@ -14,9 +14,8 @@ class Podding < Sinatra::Base
       end
     end
 
-    episodes.sort!{ |first, second| first.date <=> second.date }.reverse! # sort newest episodes first
-    @episodes = episodes.group_by{ |episode| episode.date.year } # group them in a hash by year
-
+    episodes.sort!{ |first, second| first.date <=> second.date }.reverse!
+    @episodes = episodes.group_by{ |episode| episode.date.year }
 
     slim :archive
 

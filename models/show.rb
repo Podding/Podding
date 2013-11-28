@@ -1,20 +1,21 @@
 # encoding: utf-8
 
-class Show < Model
+class Show < Mlk::Model
 
   attribute :title
   attribute :cover_url
-  attribute :author
   attribute :audioformats
 
   has_many :Episode, :episodes
 
-  def audioformats
-    if audioformat_names = data['audioformats']
-      audioformat_names.map do |format|
-        Audioformat.first(name: format)
-      end
-    end
+  # TODO: Use better default mechanism
+  def author
+    @data["author"] ? @data["author"] : Settings.author
+  end
+
+  # TODO: Use better default mechanism
+  def description
+    @data["description"] ? @data["description"] : Settings.description
   end
 
   def live_episodes

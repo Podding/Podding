@@ -1,0 +1,21 @@
+h1 #{ @published_episodes.count } published episodes
+
+- for episode in @published_episodes do
+
+  == render_content(episode.content)
+
+  - for key, value in episode.data
+
+    p #{ key }: #{ value }
+
+h1 #{ @planned_episodes.count } planned episodes
+
+- for episode in @planned_episodes do
+
+  == render_content(episode.content)
+
+  - for key, value in episode.data
+
+    p #{ key }: #{ value }
+
+h1 #{ @live_episodes.count } live episodes

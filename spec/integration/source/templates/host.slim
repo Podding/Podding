@@ -1,0 +1,11 @@
+h1 Single host template
+
+== render_content(@host.content)
+
+- for key, value in @host.data
+  p #{ key }: #{ value }
+
+  h2 Episodes:
+
+  - for episode in @host.episodes
+    p episode.title

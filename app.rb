@@ -16,6 +16,10 @@ require 'redcarpet'
 require 'net/http'
 require 'net/https'
 require 'json'
+require 'i18n'
+
+require 'mlk'
+require 'mlk/storage_engines/file_storage'
 
 require_relative 'lib/podding'
 
@@ -33,8 +37,8 @@ class Podding < Sinatra::Base
   set :public_folder, source_dir + '/assets'
   set :views, source_dir + '/templates'
 
-  FileStorage.base_path = source_dir
-  Model.storage_engine = FileStorage
+  Mlk::FileStorage.base_path = source_dir
+  Mlk::Model.storage_engine = Mlk::FileStorage
 
   configure :production do
     # ...
@@ -42,7 +46,7 @@ class Podding < Sinatra::Base
 
   configure :development do
     require 'pry'
-    require 'pry-debugger'
+    require 'pry-byebug'
   end
 
   helpers do
@@ -53,13 +57,23 @@ class Podding < Sinatra::Base
   require_relative 'controllers/init'
   require_relative 'models/init'
   require_relative 'helpers/init'
+  require_relative 'filters/init'
 
   Less.paths << source_dir + "/css"
 
   assets do
-    serve '/js',     from: 'source/js'
+    # serve '/js',     from: 'source/javascript'
     serve '/css',    from: 'source/css'
-    serve '/images', from: 'source/images'
+    serve '/images', from: 'source/assets/images'
+  end
+
+  # Configure localisation
+
+  I18n.load_path += Dir[File.join(source_dir, 'locales', '*.yml').to_s]
+  if Settings["language"]
+    I18n.locale = Settings.language
+  else
+    I18n.locale = "en"
   end
 
   # Load all helpers

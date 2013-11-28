@@ -2,15 +2,18 @@
 
 require 'date'
 
-class Episode < Model
+class Episode < Mlk::Model
+  belongs_to :Show, :show
+  # TODO: Use default value mechanism with lambda
+  inherits_from :show, :audioformats
 
   attr_reader :teaser
+  attr_reader :content
 
   attribute :title
   attribute :comments
   attribute :audioformats
-
-  belongs_to :Show, :show
+  attribute :subtitle
 
   def self.default_sort_by
     :date
@@ -22,7 +25,7 @@ class Episode < Model
   end
 
   def date
-    Date.parse(data['date'])
+    Date.parse(data['date'].to_s)
   end
 
   def live_date
@@ -56,6 +59,7 @@ class Episode < Model
   end
 
   def title
+    # TODO: Use default value mechanism
     if data['title']
       data['title']
     else
@@ -64,6 +68,7 @@ class Episode < Model
   end
 
   def hosts
+    # TODO: only support plural attribute
     if host_names = data['hosts']
       if host_names.respond_to?(:map)
         hosts = host_names.map do |host|
@@ -81,20 +86,26 @@ class Episode < Model
     end
   end
 
-  def audioformats # returns a hash: name: url
-    if formats_data = data['audioformats']
-      if formats_data.is_a?(Hash)
-        formats_data
-      elsif formats_data.is_a?(Array)
-        audioformats = formats_data.map { |format| Audioformat.first(name: format) }
-        audioformats_to_hash(audioformats)
+  def audio_files # returns a hash: audioformat: url
+    # TODO: After implementing real many-to-many relations, remove lookup code
+    formats_data = self.audioformats
+    if formats_data.is_a?(Hash)
+      formats_data.each_with_object({}) do | entry, audio_files_hash |
+        audioformat = Audioformat.first(name: entry[0] )
+        audio_files_hash[ audioformat ] = entry[1]
       end
-    elsif audioformats = self.show.audioformats
+    elsif formats_data.is_a?(Array)
+      audioformats = formats_data.map { |format| Audioformat.first(name: format) }
       audioformats_to_hash(audioformats)
-    else
-      # TODO: use defaults from settings
-      {}
     end
+  end
+
+  # TODO: Find out why I can't use audio_files[format] here
+  def audio_file_by_format(format)
+    audio_files.each do |audioformat, path|
+      return path if audioformat == format
+    end
+    nil
   end
 
   def number
@@ -113,8 +124,8 @@ class Episode < Model
   end
 
   def audioformats_to_hash(formats)
-    formats.each_with_object({ }) do |format, memo|
-      memo[audioformat.name] = audiopath_for_format(format)
+    formats.each_with_object({ }) do |format, audio_files_hash|
+      audio_files_hash[format] = audiopath_for_format(format)
     end
   end
 
