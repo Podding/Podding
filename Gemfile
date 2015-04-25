@@ -27,7 +27,6 @@ group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
   gem 'mocha'
-  gem 'shotgun'
   gem 'w3c_validators'
 end
 
