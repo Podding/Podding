@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pfleidi/mlk.git
-  revision: 641fc48a0dc6ed5657338fdff677d961d40b99c0
+  revision: ebb7861ed29675939ee9f4dc7c218850dce24998
   specs:
     mlk (0.0.1)
       scrivener

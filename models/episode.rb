@@ -4,11 +4,8 @@ require 'date'
 
 class Episode < Mlk::Model
   belongs_to :Show, :show
-  # TODO: Use default value mechanism with lambda
-  inherits_from :show, :audioformats
 
   attr_reader :teaser
-  attr_reader :content
 
   attribute :title
   attribute :comments
@@ -30,6 +27,10 @@ class Episode < Mlk::Model
 
   def live_date
     Date.parse(data['live_date']) if data['live_date']
+  end
+
+  def audioformats
+    data.fetch('audioformats') { show.audioformats }
   end
 
   def validate
@@ -112,10 +113,14 @@ class Episode < Mlk::Model
     name.split("-",2)[1]
   end
 
+  def content
+    @content || document.content
+  end
+
   private
 
   def set_teaser
-    if match = @content.match(/^(!!!\s*\n(.*?)\n?)^(!!!\s*$\n?)(.*)/m)
+    if match = content.match(/^(!!!\s*\n(.*?)\n?)^(!!!\s*$\n?)(.*)/m)
       @teaser = match[2]
       @content = match[4]
     else
