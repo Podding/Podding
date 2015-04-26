@@ -6,7 +6,8 @@ class Podding < Sinatra::Base
     @page_num = page.to_i
     redirect to("/") if @page_num == 1
 
-    episodes = Episode.all
+    episodes = Episode.all.reverse
+
     @live_episodes = [] # higher pages don't need these
     @published_episodes = [] # higher pages don't need these
     @planned_episodes = []
@@ -26,7 +27,8 @@ class Podding < Sinatra::Base
   end
 
   get "/" do
-    episodes = Episode.all
+    episodes = Episode.all.reverse
+
     @live_episodes = []
     @published_episodes = []
     @planned_episodes = []
