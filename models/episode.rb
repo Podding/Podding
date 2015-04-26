@@ -7,10 +7,10 @@ class Episode < Mlk::Model
 
   attr_reader :teaser
 
-  attribute :title
   attribute :comments
-  attribute :audioformats
   attribute :subtitle
+  attribute :title, -> { 'Untitled' }
+  attribute :audioformats, ->(i) { i.show.audioformats }
 
   def self.default_sort_by
     :date
@@ -27,10 +27,6 @@ class Episode < Mlk::Model
 
   def live_date
     Date.parse(data['live_date']) if data['live_date']
-  end
-
-  def audioformats
-    data.fetch('audioformats') { show.audioformats }
   end
 
   def validate
@@ -56,15 +52,6 @@ class Episode < Mlk::Model
           "planned"
         end
       end
-    end
-  end
-
-  def title
-    # TODO: Use default value mechanism
-    if data['title']
-      data['title']
-    else
-      "Untitled"
     end
   end
 
