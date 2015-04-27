@@ -10,7 +10,6 @@ class Episode < Mlk::Model
   attribute :comments
   attribute :subtitle
   attribute :title, -> { 'Untitled' }
-  attribute :audioformats, ->(i) { i.show.audioformats }
 
   def self.default_sort_by
     :date
@@ -27,6 +26,16 @@ class Episode < Mlk::Model
 
   def live_date
     Date.parse(data['live_date']) if data['live_date']
+  end
+
+  def audioformats
+    if data['audioformats'].nil?
+      return show.audioformats
+    end
+
+    data['audioformats'].map do |format|
+      Audioformat.first(:name => format)
+    end
   end
 
   def validate
