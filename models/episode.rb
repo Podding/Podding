@@ -11,8 +11,8 @@ class Episode < Mlk::Model
   attribute :subtitle
   attribute :title, -> { 'Untitled' }
 
-  def self.default_sort_by
-    :date
+  def self.sorted
+    all.sort_by(:date)
   end
 
   def initialize(document, options = {})
