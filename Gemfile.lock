@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pfleidi/mlk.git
-  revision: e7c1922690d41d0a98a7d06cd2e259e66f7e39c7
+  revision: c19ae2214a69d63576030d960eddadfdfd14a3b3
   specs:
     mlk (0.0.1)
       scrivener
@@ -12,15 +12,23 @@ GEM
     builder (3.2.2)
     byebug (4.0.5)
       columnize (= 0.9.0)
+    celluloid (0.16.0)
+      timers (~> 4.0.0)
     coderay (1.1.0)
     columnize (0.9.0)
     commonjs (0.2.7)
+    ffi (1.9.8)
+    hitimes (1.2.2)
     i18n (0.7.0)
     jsmin (1.0.1)
     json (1.8.2)
     less (2.6.0)
       commonjs (~> 0.2.7)
     libv8 (3.16.14.7)
+    listen (2.10.0)
+      celluloid (~> 0.16.0)
+      rb-fsevent (>= 0.9.3)
+      rb-inotify (>= 0.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     metaclass (0.0.4)
@@ -49,8 +57,13 @@ GEM
     rack-test (0.6.3)
       rack (>= 1.0)
     rake (10.4.2)
+    rb-fsevent (0.9.4)
+    rb-inotify (0.9.5)
+      ffi (>= 0.5.0)
     redcarpet (3.2.3)
     ref (1.0.5)
+    rerun (0.10.0)
+      listen (~> 2.7, >= 2.7.3)
     scrivener (1.0.0)
     settingslogic (2.0.9)
     sinatra (1.4.6)
@@ -79,6 +92,8 @@ GEM
       ref
     thor (0.19.1)
     tilt (1.4.1)
+    timers (4.0.1)
+      hitimes
     w3c_validators (1.2)
       json
       nokogiri
@@ -99,6 +114,7 @@ DEPENDENCIES
   rack
   rake
   redcarpet
+  rerun
   settingslogic
   sinatra
   sinatra-assetpack

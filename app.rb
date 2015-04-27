@@ -47,9 +47,6 @@ class Podding < Sinatra::Base
   configure :development do
     require 'pry'
     require 'pry-byebug'
-
-    require 'sinatra/reloader'
-    register Sinatra::Reloader
   end
 
   helpers do

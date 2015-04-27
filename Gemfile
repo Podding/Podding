@@ -28,6 +28,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'mocha'
   gem 'w3c_validators'
+  gem 'rerun'
 end
 
 # Localisation
