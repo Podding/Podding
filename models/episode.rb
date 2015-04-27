@@ -84,25 +84,13 @@ class Episode < Mlk::Model
   end
 
   def audio_files # returns a hash: audioformat: url
-    # TODO: After implementing real many-to-many relations, remove lookup code
-    formats_data = self.audioformats
-    if formats_data.is_a?(Hash)
-      formats_data.each_with_object({}) do | entry, audio_files_hash |
-        audioformat = Audioformat.first(name: entry[0] )
-        audio_files_hash[ audioformat ] = entry[1]
-      end
-    elsif formats_data.is_a?(Array)
-      audioformats = formats_data.map { |format| Audioformat.first(name: format) }
-      audioformats_to_hash(audioformats)
+    audioformats.each_with_object({ }) do |format, result|
+      result[format] = audiopath_for_format(format)
     end
   end
 
-  # TODO: Find out why I can't use audio_files[format] here
   def audio_file_by_format(format)
-    audio_files.each do |audioformat, path|
-      return path if audioformat == format
-    end
-    nil
+    audio_files[format]
   end
 
   def number
@@ -121,12 +109,6 @@ class Episode < Mlk::Model
       @content = match[4]
     else
       @teaser = ''
-    end
-  end
-
-  def audioformats_to_hash(formats)
-    formats.each_with_object({ }) do |format, audio_files_hash|
-      audio_files_hash[format] = audiopath_for_format(format)
     end
   end
 
