@@ -24,6 +24,10 @@ class Episode < Mlk::Model
     Date.parse(data['date'].to_s)
   end
 
+  def year
+    date.year
+  end
+
   def live_date
     Date.parse(data['live_date']) if data['live_date']
   end
