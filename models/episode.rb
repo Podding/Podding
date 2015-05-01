@@ -51,21 +51,8 @@ class Episode < Mlk::Model
   end
 
   def status
-    if data['status']
-      data['status']
-    else
-      if live_date and live_date == Date.today
-        "live"
-      elsif live_date and live_date > Date.today
-        "planned"
-      else
-        if date <= Date.today
-          "published"
-        else
-          "planned"
-        end
-      end
-    end
+    #deprecated, will be removed as soon as templates are clean
+    'published'
   end
 
   def hosts
@@ -87,16 +74,6 @@ class Episode < Mlk::Model
     end
   end
 
-  def audio_files # returns a hash: audioformat: url
-    audioformats.each_with_object({ }) do |format, result|
-      result[format] = audiopath_for_format(format)
-    end
-  end
-
-  def audio_file_by_format(format)
-    audio_files[format]
-  end
-
   def number
     name.split("-",2)[1]
   end
@@ -116,10 +93,4 @@ class Episode < Mlk::Model
     end
   end
 
-  def audiopath_for_format(format)
-    # TODO: use settings for base bath
-    "/audio/#{ self.name }#{ format.file_extension }"
-  end
-
 end
-
