@@ -26,4 +26,8 @@ module URLs
     "https://flattr.com/profile/#{ host.flattr_name }"
   end
 
+  def audio_url(name,format)
+    "#{settings.base_audio_url}/#{name}#{format.file_extension}"
+  end
+
 end
