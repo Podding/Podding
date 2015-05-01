@@ -29,6 +29,8 @@ group :development, :test do
   gem 'mocha'
   gem 'w3c_validators'
   gem 'rerun'
+  gem 'minitest'
+  gem 'minitest-spec'
 end
 
 # Localisation
